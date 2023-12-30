@@ -1,11 +1,7 @@
 <h1 align="center">Diay Plus <img src="https://media.giphy.com/media/eUvDjeBbgw5vce0Nz1/giphy.gif" width="35px" height="35px"> </h1>
 
 
-<h3 align="center">Communication and Location Application of Football Players</h3>
-
-
-<hr></hr>
-
+<h3 align="center">Personal assistant and diary app</h3>
 
 <h2 align="left">What technologies did I use?</h2>
 
@@ -21,11 +17,11 @@
     - Popup Menu
     - Google Admob
 
--  Authentication Management
+- Authentication Management
     - Firebase Authentication
     - Google Signin Services
 
- - Database Management
+- Database Management
     - Firebase Firestore Database
     - Firebase Storage    
   
@@ -48,6 +44,8 @@
     - Navigation Component
     - LiveData
     - Custom Shared Preferences
+    - View Binding
+    - Data Binding
 
 <h2 align="left">Some Images about App:</h2>
 
@@ -69,5 +67,5 @@
 
 
 <h2 align="left">Google Play Link:</h2>
-
+The application is in the testing and maintenance phase.
 
