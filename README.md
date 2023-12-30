@@ -67,6 +67,6 @@
 
 
 
-<h2 align="left">Google Play Link:</h2>
+<h2 align="left">Play store Link:</h2>
 The application is in the testing and maintenance phase.
 
