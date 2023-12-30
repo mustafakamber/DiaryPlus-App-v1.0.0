@@ -29,7 +29,7 @@
     - MVVM
 
 - Broadcast Receiver
-    - Notification 
+    - Notifications 
 
 - Camera Operations
     - Camera2 API
@@ -37,10 +37,10 @@
 - Thread Management
     - Coroutines    
 
-- Download Image 
+- Image Handling
     - Glide
 
-- Jetpack
+- Jetpack Components
     - Navigation Component
     - LiveData
     - Custom Shared Preferences
