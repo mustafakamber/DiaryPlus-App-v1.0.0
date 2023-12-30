@@ -1,4 +1,4 @@
-<h1 align="center">Diay Plus <img src="https://media.giphy.com/media/eUvDjeBbgw5vce0Nz1/giphy.gif" width="35px" height="35px"> </h1>
+<h1 align="center">Diary Plus <img src="https://media.giphy.com/media/eUvDjeBbgw5vce0Nz1/giphy.gif" width="35px" height="35px"> </h1>
 
 
 <h3 align="center">Personal assistant and diary app</h3>
