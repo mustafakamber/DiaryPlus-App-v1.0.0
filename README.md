@@ -11,7 +11,8 @@
     - Alert Dialog
     - CircleImageView
     - CalendarView
-    - NavigationBottomView
+    - SearchView
+    - NavigationView
     - GIF
     - Swipe Item
     - Popup Menu
