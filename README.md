@@ -1,4 +1,4 @@
-<h1 align="center">Diary Plus <img src="https://i.ibb.co/hydXd58/applicationlogo.png" width="35px" height="35px"> </h1>
+<h1 align="center">Diary Plus    <img src="https://i.ibb.co/hydXd58/applicationlogo.png" width="35px" height="35px"> </h1>
 
 
 <h3 align="center">Personal assistant and diary application</h3>
