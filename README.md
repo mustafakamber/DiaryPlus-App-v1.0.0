@@ -1,7 +1,7 @@
-<h1 align="center">Diary Plus <img src="https://media.giphy.com/media/eUvDjeBbgw5vce0Nz1/giphy.gif" width="35px" height="35px"> </h1>
+<h1 align="center">Diary Plus <img src="https://i.ibb.co/hydXd58/applicationlogo.png" width="35px" height="35px"> </h1>
 
 
-<h3 align="center">Personal assistant and diary app</h3>
+<h3 align="center">Personal assistant and diary application</h3>
 
 <h2 align="left">What technologies did I use?</h2>
 
