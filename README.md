@@ -18,11 +18,11 @@
     - Popup Menu
     - Google Admob
 
-- Authentication Management
+- Authentication
     - Firebase Authentication
     - Google Signin Services
 
-- Database Management
+- Database
     - Firebase Firestore Database
     - Firebase Storage    
   
