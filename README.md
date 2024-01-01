@@ -57,7 +57,7 @@
 
 </br>
 
-| Diaries  | Calendar | Archive |
+| Home  | Calendar | Archive |
 | ----- | ------------ | ------------ |
 |<img src="https://i.ibb.co/KbpHsdJ/diaries.jpg" width="250" height="520"/>|<img src="https://i.ibb.co/cXG00D3/calendar.jpg" width="250" height="520"/>|<img src="https://i.ibb.co/Hn5Yn3R/archive.jpg" width="250" height="520"/>
 
