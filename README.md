@@ -13,7 +13,7 @@
     - CalendarView
     - SearchView
     - NavigationView
-    - CarcView
+    - CardView
     - RecyclerView
     - GIF
     - Swipe Item
