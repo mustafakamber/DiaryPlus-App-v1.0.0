@@ -18,7 +18,7 @@
     - GIF
     - Swipe Item
     - Popup Menu
-    - Google Admob
+    - Google Admob Ads
 
 - Authentication
     - Firebase Authentication
