@@ -15,7 +15,7 @@
     - NavigationView
     - CardView
     - RecyclerView
-    - [GIF](pl.droidsonroids.gif:android-gif-drawable:1.2.27)
+    - [GIF](https://github.com/koral--/android-gif-drawable)
     - Swipe Item
     - Popup Menu
     - [Google Admob Ads](https://admob.google.com/home/)
