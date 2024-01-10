@@ -9,24 +9,24 @@
     - XML Layout
     - Bottom Sheet
     - Alert Dialog
-    - CircleImageView
+    - [CircleImageView](https://github.com/hdodenhof/CircleImageView)
     - CalendarView
     - SearchView
     - NavigationView
     - CardView
     - RecyclerView
-    - GIF
+    - [GIF](pl.droidsonroids.gif:android-gif-drawable:1.2.27)
     - Swipe Item
     - Popup Menu
-    - Google Admob Ads
+    - [Google Admob Ads](https://admob.google.com/home/)
 
 - Authentication
-    - Firebase Authentication
+    - [Firebase](https://firebase.google.com) Authentication
     - Google Signin Services
 
 - Database
-    - Firebase Firestore Database
-    - Firebase Storage    
+    - [Firebase](https://firebase.google.com) Firestore Database
+    - [Firebase](https://firebase.google.com) Storage    
   
 - Architecture
     - MVVM
@@ -41,7 +41,7 @@
     - Coroutines    
 
 - Image Handling
-    - Glide
+    - [Glide](https://github.com/bumptech/glide)
     - [Pixabay](https://pixabay.com/tr/)
 
 - Jetpack Components
