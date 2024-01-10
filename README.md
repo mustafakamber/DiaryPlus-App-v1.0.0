@@ -32,10 +32,10 @@
     - MVVM
 
 - Broadcast Receiver
-    - Notifications 
+    - [Notifications](https://www.youtube.com/watch?v=_Z2S63O-1HE) 
 
 - Camera Operations
-    - Camera2 API
+    - [Camera2 API](https://www.youtube.com/watch?v=S-7H72UTiBU&t=574s)
 
 - Thread Management
     - Coroutines    
