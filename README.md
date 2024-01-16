@@ -70,6 +70,6 @@
 
 
 
-[Play store Link:](https://play.google.com/store/apps?hl=tr&gl=US)
+<h3 align="center" [Play store Link:](https://play.google.com/store/apps?hl=tr&gl=US)</h3>
 
 
