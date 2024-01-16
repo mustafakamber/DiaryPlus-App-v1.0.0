@@ -70,8 +70,8 @@
 
 
 
-<h3 align="left">
+<h2 align="left">
   <a href="https://play.google.com/store/apps?hl=tr&gl=US" target="_blank">Play Store Link</a>
-</h3>
+</h2>
 
 
