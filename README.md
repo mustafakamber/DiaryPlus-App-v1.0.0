@@ -70,6 +70,6 @@
 
 
 
-<h2 align="left">Play store Link:</h2>
-The application is in the testing and maintenance phase.
+<h2 align="left">[Play store Link:](https://play.google.com/store/apps?hl=tr&gl=US)</h2>
+
 
