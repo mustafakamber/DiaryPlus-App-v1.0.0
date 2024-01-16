@@ -3,7 +3,7 @@
 
 <h3 align="center">Personal assistant and diary application</h3>
 
-<h2 align="left">What technologies did I use?</h2>
+<h2 align="left">Which technologies did I use?</h2>
 
 - UI Elements
     - XML Layout
