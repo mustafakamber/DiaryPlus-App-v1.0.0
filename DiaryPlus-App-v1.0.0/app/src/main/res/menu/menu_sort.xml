@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <item
+        android:id="@+id/sort_new"
+        android:title="@string/new_to_old"
+        />
+    <item
+        android:id="@+id/sort_old"
+        android:title="@string/old_to_new"
+        />
+    <item
+        android:id="@+id/sort_max"
+        android:title="@string/max_to_min"
+        />
+    <item
+        android:id="@+id/sort_min"
+        android:title="@string/min_to_max"
+        />
+
+</menu>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:icon="@drawable/outline_home"
+        android:id="@+id/homeButton"
+        android:title=""
+        />
+
+    <item
+        android:icon="@drawable/outline_calendar"
+        android:id="@+id/calendarButton"
+        android:title=""
+        />
+
+    <item
+        android:id="@+id/placeHolder"
+        android:enabled="false"
+        android:title=""
+        ></item>
+
+
+    <item
+        android:icon="@drawable/outline_archive"
+        android:id="@+id/archiveButton"
+        android:title=""
+        />
+
+
+    <item
+        android:icon="@drawable/outline_settings"
+        android:id="@+id/settingsButton"
+        android:title=""
+        />
+
+</menu>

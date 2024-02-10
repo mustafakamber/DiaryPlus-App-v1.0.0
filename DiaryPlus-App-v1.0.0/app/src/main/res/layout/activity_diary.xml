@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:id="@+id/noteActivityConstraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.activity.DiaryActivity"
+        android:background="@color/white">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/noteTabConstraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/note_topbar_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/noteActivityTitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/dark_blue"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:foreground="?android:attr/selectableItemBackground"
+                android:id="@+id/noteBackButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/square_blue_button_background"
+                android:padding="8dp"
+                android:src="@drawable/arrow_back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </ImageView>
+
+            <TextView
+                android:foreground="?android:attr/selectableItemBackground"
+                android:id="@+id/noteSaveButton"
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/rectangle_blue_corner_button_background"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="@string/note_save_button_text"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/note_save_button_text_color"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:foreground="?android:attr/selectableItemBackground"
+                android:id="@+id/noteMenuButton"
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center"
+                android:padding="2dp"
+                android:src="@drawable/note_menu"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/newNoteTitleLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/noteOptionsLayout"
+            app:shapeAppearanceOverlay="@style/FabShapeStyle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/noteTitleEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/new_note_title_hint"
+                android:inputType="textPersonName"
+                android:textColor="@color/new_note_text_color" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/newNoteContentLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/newNoteTitleLayout"
+            app:shapeAppearanceOverlay="@style/FabShapeStyleTwo">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/noteContentEditText"
+                android:layout_width="match_parent"
+                android:layout_height="460dp"
+                android:gravity="top"
+                android:hint="@string/new_note_content_hint"
+                android:inputType="textMultiLine"
+                android:textColor="@color/new_note_text_color" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <RelativeLayout
+            android:id="@+id/noteOptionsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/note_options_layout_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/noteTabConstraintLayout">
+
+            <RelativeLayout
+                android:id="@+id/noteCalendarButton"
+                android:layout_width="210dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
+                <ImageView
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:id="@+id/noteCalendarIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:padding="2dp"
+                    android:src="@drawable/note_edit_calendar">
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/noteCalendarText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_toEndOf="@+id/noteCalendarIcon"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="@color/new_note_calendar_text_color">
+
+                </TextView>
+
+            </RelativeLayout>
+
+            <ImageView
+                android:foreground="?android:attr/selectableItemBackground"
+                android:id="@+id/noteCameraButton"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="8dp"
+                android:layout_toStartOf="@+id/noteTextColorButton"
+                android:padding="6dp"
+                android:src="@drawable/note_edit_camera">
+
+            </ImageView>
+
+            <ImageView
+                android:foreground="?android:attr/selectableItemBackground"
+                android:id="@+id/noteTextColorButton"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="8dp"
+                android:layout_toStartOf="@+id/noteBackgroundColorButton"
+                android:padding="6dp"
+                android:src="@drawable/note_edit_text">
+
+            </ImageView>
+
+            <ImageView
+                android:foreground="?android:attr/selectableItemBackground"
+                android:id="@+id/noteBackgroundColorButton"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:padding="6dp"
+                android:src="@drawable/note_edit_background"
+                >
+
+            </ImageView>
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/noteRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toEndOf="@+id/newNoteContentLayout"
+            app:layout_constraintStart_toStartOf="@+id/newNoteContentLayout"
+            app:layout_constraintTop_toBottomOf="@+id/newNoteContentLayout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+
+

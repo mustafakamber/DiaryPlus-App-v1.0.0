@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/choose_title_text"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="@string/choose_title_text"
+        android:textAlignment="center"
+        android:textColor="@color/choose_title_text_color"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </TextView>
+
+    <RelativeLayout
+        android:foreground="?android:attr/selectableItemBackground"
+        android:id="@+id/choose_camera_button"
+        android:layout_width="150dp"
+        android:layout_height="175dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/choose_title_text">
+
+        <ImageView
+            android:id="@+id/choose_camera_view"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="0dp"
+            android:src="@drawable/choose_camera">
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/choose_camera_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/choose_camera_view"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/choose_camera_text"
+            android:textAlignment="center"
+            android:textColor="@color/note_choose_alert_icon_and_text_color"
+            android:textSize="15sp">
+        </TextView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:foreground="?android:attr/selectableItemBackground"
+        android:id="@+id/choose_gallery_button"
+        android:layout_width="150dp"
+        android:layout_height="175dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/choose_title_text">
+
+        <ImageView
+            android:id="@+id/choose_gallery_view"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="0dp"
+            android:src="@drawable/choose_gallery"></ImageView>
+
+        <TextView
+            android:id="@+id/choose_gallery_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/choose_gallery_view"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/choose_gallery_text"
+            android:textAlignment="center"
+            android:textColor="@color/note_choose_alert_icon_and_text_color"
+            android:textSize="15sp">
+
+        </TextView>
+    </RelativeLayout>
+
+    <TextView
+        android:foreground="?android:attr/selectableItemBackground"
+        android:id="@+id/choose_cancel_button"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="-5dp"
+        android:gravity="center"
+        android:text="@string/choose_cancel_text"
+        android:textAlignment="center"
+        android:textColor="@color/choose_cancel_button_color"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/choose_gallery_button">
+
+    </TextView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

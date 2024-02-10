@@ -1,0 +1,94 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+        <style name="Theme.DiaryBook" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <!--  Menu  View Button Colors. -->
+        <item name="colorPrimary">#153f69</item>
+
+        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+
+        <!-- Menu Add Button Background Color. -->
+        <item name="colorSecondary">#153f69</item>
+
+        <item name="colorSecondaryVariant">@color/white</item>
+
+            <!-- Menu Add Button Color. -->
+        <item name="colorOnSecondary">@color/white</item>
+
+        <item name="floatingActionButtonStyle">@style/FloatingActionButtonStyle</item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+
+    </style>
+
+    <style name="ThemeOverlay.SearchView" parent="">
+        <!-- Text color -->
+        <item name="android:editTextColor">@color/home_searchview_query_color</item>
+        <!-- Hint text color -->
+        <item name="android:textColorHint">@color/home_searchview_query_hint_color</item>
+
+
+    </style>
+
+    <style name="FloatingActionButtonStyle"  parent="Widget.Design.FloatingActionButton">
+
+        <item name = "shapeAppearanceOverlay">@style/FabShapeStyle</item>
+
+    </style>
+
+    <style name="FabShapeStyle" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+
+        <item name="cornerSize">25%</item>
+
+        </style>
+
+    <style name="FabShapeStyleTwo" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+
+        <item name="cornerSize">4%</item>
+
+    </style>
+
+    <style name="FabShapeStyleThree" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+
+        <item name="cornerSize">25%</item>
+
+    </style>
+
+    <style name="BottomSheetDialogTheme" parent="Theme.Design.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    </style>
+
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name = "AuthScreenBackground"><item name="android:background">@drawable/auth_background</item></style>
+    <style name = "AuthInsideBackground"><item name="android:background">@drawable/auth_inside_box_background</item></style>
+    <style name = "AuthInputTextColor"><item name="android:textColor">@color/black</item></style>
+
+
+    <style name = "BottomMenuBackground"><item name="android:background">@color/white</item></style>
+    <style name = "BottomMenuIcon"><item name="android:background">@color/white</item></style>
+    <style name = "BottomMenuFloatIconBackground"><item name="android:background">@color/dark_blue</item></style>
+    <style name = "BottomMenuFloatIcon"><item name="android:background">@color/white</item></style>
+
+    <style name = "NoteLayoutBackground"><item name="android:background">@color/white</item></style>
+    <style name = "NoteBackButtonBackground"><item name="android:background">@color/dark_blue</item></style>
+    <style name = "NoteBackButtonIcon"><item name="android:background">@color/white</item></style>
+    <style name = "NoteTitleText"><item name="android:textColor">@color/dark_blue</item></style>
+    <style name = "NoteSaveButtonBackground"><item name="android:background">@color/white</item></style>
+    <style name = "NoteSaveButtonText"><item name="android:background">@color/dark_blue</item></style>
+    <style name = "NoteOptionsBackground"><item name="android:background">@color/gray</item></style>
+    <style name = "NoteOptionsIconColor"><item name="android:background">@color/white</item></style>
+    <style name = "NoteTextInputLayoutCornerColor"><item name="android:background">@color/dark_blue</item></style>
+
+    <style name = "HomeLayoutBackground"><item name="android:background">@color/white</item></style>
+
+</resources>
+
+
+
+

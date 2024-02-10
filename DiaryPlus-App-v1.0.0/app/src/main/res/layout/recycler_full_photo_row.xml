@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:id="@+id/recycler_photo_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:foreground="?android:attr/selectableItemBackground"
+            android:id="@+id/myPhotoImage"
+            android:layout_width="72dp"
+            android:layout_height="120dp"
+            android:src="@drawable/base_settings_photo"
+            app:layout_constraintBottom_toTopOf="@+id/myPhotoHorizontalDivider1"
+            app:layout_constraintEnd_toStartOf="@+id/myPhotoVerticalDivider1"
+            app:layout_constraintStart_toEndOf="@+id/myPhotoVerticalDivider2"
+            app:layout_constraintTop_toBottomOf="@+id/myPhotoHorizontalDivider2">
+
+        </ImageView>
+
+        <View
+            android:id="@+id/myPhotoVerticalDivider1"
+            android:layout_width="2dp"
+            android:layout_height="140dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent">
+
+        </View>
+
+        <View
+            android:id="@+id/myPhotoHorizontalDivider1"
+            android:layout_width="140dp"
+            android:layout_height="2dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteX="1dp">
+
+        </View>
+
+        <View
+            android:id="@+id/myPhotoVerticalDivider2"
+            android:layout_width="2dp"
+            android:layout_height="140dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </View>
+
+        <View
+            android:id="@+id/myPhotoHorizontalDivider2"
+            android:layout_width="140dp"
+            android:layout_height="2dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="2dp">
+
+        </View>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
