@@ -38,7 +38,11 @@
     - [Camera2 API](https://www.youtube.com/watch?v=S-7H72UTiBU&t=574s)
 
 - Thread Management
-    - Coroutines    
+    - Coroutines
+    - RxJava    
+
+- API
+    -Retrofit
 
 - Image Handling
     - [Glide](https://github.com/bumptech/glide)

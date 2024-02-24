@@ -42,6 +42,8 @@ android {
 
 
 def nav_version = "2.5.3"
+def retrofitVersion = "2.3.0"
+def rxJavaVersion = "2.1.1"
 
 dependencies {
 
@@ -66,6 +68,15 @@ dependencies {
 
     //Glide Imp.
     implementation 'com.github.bumptech.glide:glide:4.16.0'
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+
+    //RxJava
+    implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxJavaVersion"
 
     //Firebase Imp.
     implementation(platform("com.google.firebase:firebase-bom:32.2.3"))

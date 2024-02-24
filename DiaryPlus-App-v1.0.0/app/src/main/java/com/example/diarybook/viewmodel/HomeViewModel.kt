@@ -3,13 +3,21 @@ package com.example.diarybook.viewmodel
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import com.example.diarybook.R
+import com.example.diarybook.model.Calendar
 import com.example.diarybook.model.Diary
 import com.example.diarybook.service.AuthService
+import com.example.diarybook.service.CalendarService
 import com.example.diarybook.service.DatabaseService.DeleteService
 import com.example.diarybook.service.DatabaseService.GetService
 import com.example.diarybook.service.DatabaseService.MoveService
 import com.example.diarybook.util.SharedPreferences
 import com.example.diarybook.view.dialog.DatePickerDialog
+import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+import io.reactivex.observers.DisposableSingleObserver
+import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -17,7 +25,7 @@ import kotlinx.coroutines.withContext
 class HomeViewModel (application: Application) : CoroutineViewModel(application) {
 
     val homeDiaryView = MutableLiveData<List<Diary>?>()
-    val homeCalendarView = MutableLiveData<ArrayList<Int>?>()
+    val homeCalendarView = MutableLiveData<List<Calendar>?>()
     val homeErrorMessage = MutableLiveData<Boolean>()
     val homeNullMessage = MutableLiveData<Boolean>()
     val homeSearchView = MutableLiveData<Boolean>()
@@ -25,6 +33,9 @@ class HomeViewModel (application: Application) : CoroutineViewModel(application)
     val homeToastMessage = MutableLiveData<String?>()
     val homeSnackbarMessage = MutableLiveData<Int>()
     val homeDateText = MutableLiveData<String?>()
+
+    private val calendarService = CalendarService()
+    private val disposable = CompositeDisposable()
 
     private val getService = GetService()
     private val authService = AuthService()
@@ -56,7 +67,7 @@ class HomeViewModel (application: Application) : CoroutineViewModel(application)
         homeSearchView.value = false
         getUserName()
         getDate()
-        getImage()
+        getCalendarImageFromAPI()
         getAllDiaries()
     }
 
@@ -93,50 +104,59 @@ class HomeViewModel (application: Application) : CoroutineViewModel(application)
     }
 
 
-    private fun getImage(){
+    private fun getCalendarImageFromAPI(){
 
-        val month = datePicker.currentMonth()
+        disposable.add(
+            calendarService.getCalendarData()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableSingleObserver<List<Calendar>>(){
+                    override fun onSuccess(calendarList: List<Calendar>) {
 
-        val calendarPhoto : Array<Int> = arrayOf(
-            R.drawable.base_calendar_january, R.drawable.base_calendar_february, R.drawable.base_calendar_march,
-            R.drawable.base_calendar_april, R.drawable.base_calendar_may, R.drawable.base_calendar_june,
-            R.drawable.base_calendar_july, R.drawable.base_calendar_august,
-            R.drawable.base_calendar_september, R.drawable.base_calendar_october,
-            R.drawable.base_calendar_november,R.drawable.base_calendar_december
+                        val month = datePicker.currentMonth()
+
+                        val indexOfMonth = when (month) {
+                            "January" -> 0
+                            "February" -> 1
+                            "March" -> 2
+                            "April" -> 3
+                            "May" -> 4
+                            "June" -> 5
+                            "July" -> 6
+                            "August" -> 7
+                            "September" -> 8
+                            "October" -> 9
+                            "November" -> 10
+                            "December" -> 11
+                            else -> -1
+                        }
+
+                        if (indexOfMonth != -1) {
+
+                            val newList: MutableList<Calendar> = mutableListOf()
+                            for (i in indexOfMonth until calendarList.size) {
+                                newList.add(calendarList[i])
+                            }
+                            for (i in 0 until indexOfMonth) {
+                                newList.add(calendarList[i])
+                            }
+
+                            val newPhotoList = newList.toTypedArray()
+                            val newPhotoArrayList = ArrayList<Calendar>(newPhotoList.asList())
+
+                            homeCalendarView.value = newPhotoArrayList
+
+                        }
+
+
+                    }
+
+                    override fun onError(e: Throwable) {
+                        homeToastMessage.value = e.localizedMessage
+                    }
+
+                })
         )
-
-        val indexOfMonth = when (month) {
-            "January" -> 0
-            "February" -> 1
-            "March" -> 2
-            "April" -> 3
-            "May" -> 4
-            "June" -> 5
-            "July" -> 6
-            "August" -> 7
-            "September" -> 8
-            "October" -> 9
-            "November" -> 10
-            "December" -> 11
-            else -> -1
-        }
-
-        if (indexOfMonth != -1) {
-
-            val newList: MutableList<Int> = mutableListOf()
-            for (i in indexOfMonth until calendarPhoto.size) {
-                newList.add(calendarPhoto[i])
-            }
-            for (i in 0 until indexOfMonth) {
-                newList.add(calendarPhoto[i])
-            }
-
-            val newPhotoList = newList.toTypedArray()
-            val newPhotoArrayList = ArrayList<Int>(newPhotoList.asList())
-
-            homeCalendarView.value = newPhotoArrayList
-
-        }
 
     }
 
@@ -194,6 +214,10 @@ class HomeViewModel (application: Application) : CoroutineViewModel(application)
         }
     }
 
+    override fun onCleared() {
+        super.onCleared()
 
+        disposable.clear()
+    }
 
 }

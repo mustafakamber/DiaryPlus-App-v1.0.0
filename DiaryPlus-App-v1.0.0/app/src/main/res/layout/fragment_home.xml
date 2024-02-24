@@ -179,7 +179,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/homeSearchView"
-                    app:srcCompat="@drawable/base_calendar_july">
+                    >
 
                 </androidx.recyclerview.widget.RecyclerView>
 

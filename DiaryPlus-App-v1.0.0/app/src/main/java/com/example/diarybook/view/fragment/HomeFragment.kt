@@ -15,13 +15,13 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.diarybook.R
-import com.example.diarybook.adapter.CalendarPhotoAdapter
+import com.example.diarybook.adapter.CalendarAdapter
 import com.example.diarybook.adapter.DiaryAdapter
 import com.example.diarybook.databinding.FragmentHomeBinding
+import com.example.diarybook.model.Calendar
 import com.example.diarybook.model.Diary
 import com.example.diarybook.swipe.HomePhotoSwipe
 import com.example.diarybook.swipe.HomeDiarySwipe
-import com.example.diarybook.util.*
 import com.example.diarybook.util.Constant.NOTE_DATA
 import com.example.diarybook.view.activity.DiaryActivity
 import com.example.diarybook.viewmodel.HomeViewModel
@@ -43,7 +43,7 @@ class HomeFragment : Fragment() {
     private lateinit var inputMethodManager: InputMethodManager
 
     private var diaryAdapter = DiaryAdapter(arrayListOf())
-    private var photoAdapter = CalendarPhotoAdapter(arrayListOf())
+    private var photoAdapter = CalendarAdapter(arrayListOf())
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -117,7 +117,7 @@ class HomeFragment : Fragment() {
         homeViewModel.refreshHomeFragment()
     }
 
-    private fun showCalendarPhotoWithSwiper(calendarPhoto : ArrayList<Int>) = with(homeFragmentBinding){
+    private fun showCalendarPhotoWithSwiper(calendarPhoto : ArrayList<Calendar>) = with(homeFragmentBinding){
 
         photoAdapter.updateCalendarList(calendarPhoto)
 
@@ -306,7 +306,7 @@ class HomeFragment : Fragment() {
         homeViewModel.homeCalendarView.observe(viewLifecycleOwner, Observer { images ->
             images?.let {
                 homeCalendarRecyclerView.visibility = View.VISIBLE
-                showCalendarPhotoWithSwiper(images as ArrayList<Int>)
+                showCalendarPhotoWithSwiper(images as ArrayList<Calendar>)
             }
         })
 

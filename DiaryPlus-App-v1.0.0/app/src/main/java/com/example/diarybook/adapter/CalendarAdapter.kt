@@ -4,15 +4,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.diarybook.databinding.RecyclerCalendarPhotoRowBinding
-import com.example.diarybook.view.dialog.DatePickerDialog
+import com.example.diarybook.model.Calendar
+import com.example.diarybook.util.downloadImageFromUrl
+import com.example.diarybook.util.placeHolderProgressBar
 
 
-class CalendarPhotoAdapter(
-    val calendarPhotos: ArrayList<Int>
+class CalendarAdapter(
+    val calendar: ArrayList<Calendar>
 
-) : RecyclerView.Adapter<CalendarPhotoAdapter.CalendarPhotoHolder>() {
+) : RecyclerView.Adapter<CalendarAdapter.CalendarPhotoHolder>() {
 
-    private lateinit var datePicker: DatePickerDialog
 
     class CalendarPhotoHolder(val binding: RecyclerCalendarPhotoRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -36,11 +37,15 @@ class CalendarPhotoAdapter(
 
     override fun onBindViewHolder(holder: CalendarPhotoHolder, position: Int) =
         with(holder.binding) {
-            if (position >= 0 && position < calendarPhotos.size) {
 
-                homeCalenderImage.setImageResource(calendarPhotos[position])
+            if (position >= 0 && position < calendar.size) {
+
+                holder.binding.homeCalenderImage.downloadImageFromUrl(calendar[position].calendarImageUrl,
+                    placeHolderProgressBar(holder.itemView.context)
+                )
 
             }
+
         }
 
     override fun getItemCount(): Int {
@@ -50,19 +55,20 @@ class CalendarPhotoAdapter(
     }
 
 
+
     fun showNextMonthImage(position: Int) {
 
-        if (position >= 0 && position < calendarPhotos.size - 1) {
+        if (position >= 0 && position < calendar.size - 1) {
 
-            val newList: ArrayList<Int> = ArrayList()
+            val newList: ArrayList<Calendar> = ArrayList()
 
             val index = position + 1
 
-            for (i in index until calendarPhotos.size) {
-                newList.add(calendarPhotos[i])
+            for (i in index until calendar.size) {
+                newList.add(calendar[i])
             }
             for (i in 0 until index) {
-                newList.add(calendarPhotos[i])
+                newList.add(calendar[i])
             }
 
             updateCalendarList(newList)
@@ -71,9 +77,10 @@ class CalendarPhotoAdapter(
 
     }
 
-    fun updateCalendarList(newCalendarList: ArrayList<Int>) {
-        calendarPhotos.clear()
-        calendarPhotos.addAll(newCalendarList)
+
+    fun updateCalendarList(newCalendarList: List<Calendar>) {
+        calendar.clear()
+        calendar.addAll(newCalendarList)
         notifyDataSetChanged()
     }
 

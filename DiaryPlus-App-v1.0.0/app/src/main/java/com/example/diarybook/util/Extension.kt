@@ -49,7 +49,8 @@ object Constant{
     const val notificationMessage = "messageExtra"
     const val notificationChannelName = "Notification Channel"
     const val notificationDescription = "A Description of the Channel"
-
+    const val baseUrl = "https://raw.githubusercontent.com/"
+    const val extUrl = "mustafakamber/CalendarImageDataJSON/main/calendarList.json"
 }
 
 fun ImageView.downloadImageFromUrl(url : String?,progressDrawable: CircularProgressDrawable){
