@@ -42,7 +42,7 @@
     - RxJava    
 
 - API
-    -Retrofit
+    - Retrofit
 
 - Image Handling
     - [Glide](https://github.com/bumptech/glide)
