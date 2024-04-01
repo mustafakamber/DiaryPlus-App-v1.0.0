@@ -22,7 +22,7 @@ import com.example.diarybook.model.Calendar
 import com.example.diarybook.model.Diary
 import com.example.diarybook.swipe.HomePhotoSwipe
 import com.example.diarybook.swipe.HomeDiarySwipe
-import com.example.diarybook.util.Constant.NOTE_DATA
+import com.example.diarybook.constant.Constant.NOTE_DATA
 import com.example.diarybook.view.activity.DiaryActivity
 import com.example.diarybook.viewmodel.HomeViewModel
 import com.example.diarybook.viewmodel.UserViewModel
@@ -278,7 +278,6 @@ class HomeFragment : Fragment() {
 
     private fun observeLiveData() = with(homeFragmentBinding) {
 
-
         homeViewModel.homeToastMessage.observe(viewLifecycleOwner, Observer { toastMessage ->
             toastMessage?.let {
                 Toast.makeText(requireContext(),toastMessage,Toast.LENGTH_SHORT).show()
@@ -302,7 +301,6 @@ class HomeFragment : Fragment() {
 
         })
 
-
         homeViewModel.homeCalendarView.observe(viewLifecycleOwner, Observer { images ->
             images?.let {
                 homeCalendarRecyclerView.visibility = View.VISIBLE
@@ -312,8 +310,8 @@ class HomeFragment : Fragment() {
 
         homeViewModel.homeDateText.observe(viewLifecycleOwner, Observer { date ->
             date?.let {
-                homeCalender.visibility = View.VISIBLE
-                homeCalender.text = date
+                homeCalendar.visibility = View.VISIBLE
+                homeCalendar.text = date
             }
         })
 
@@ -367,6 +365,7 @@ class HomeFragment : Fragment() {
         homeViewModel.homeSearchView.observe(viewLifecycleOwner, Observer { searchView ->
             searchView?.let {
                 if (it) {
+                    homeCalendar.visibility = View.GONE
                     homeSearchView.visibility = View.VISIBLE
                     homeCalendarRecyclerView.visibility = View.GONE
                     homeSearchButton.setImageResource(R.drawable.arrow_back)
@@ -375,6 +374,7 @@ class HomeFragment : Fragment() {
                         homeSearchView, InputMethodManager.SHOW_IMPLICIT
                     )
                 } else {
+                    homeCalendar.visibility = View.VISIBLE
                     homeSearchView.visibility = View.GONE
                     homeCalendarRecyclerView.visibility = View.VISIBLE
                     homeSearchButton.setImageResource(R.drawable.base_search)

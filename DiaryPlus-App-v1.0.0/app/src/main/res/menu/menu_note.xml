@@ -4,12 +4,12 @@
     >
 
     <item
-        android:icon="@drawable/save"
+        android:icon="@drawable/menu_save"
         android:id="@+id/menu_update"
         android:title="@string/menu_update"
         />
     <item
-        android:icon="@drawable/base_settings_delete"
+        android:icon="@drawable/menu_delete"
         android:id="@+id/menu_delete"
         android:title="@string/menu_delete"
         />

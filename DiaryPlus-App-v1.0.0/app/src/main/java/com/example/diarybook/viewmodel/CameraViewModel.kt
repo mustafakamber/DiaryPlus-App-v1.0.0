@@ -11,7 +11,7 @@ import android.net.Uri
 import androidx.core.content.FileProvider
 import androidx.lifecycle.MutableLiveData
 import com.example.diarybook.util.SharedPreferences
-import com.example.diarybook.util.Constant.FILE_PROVIDER_PACKAGE
+import com.example.diarybook.constant.Constant.FILE_PROVIDER_PACKAGE
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

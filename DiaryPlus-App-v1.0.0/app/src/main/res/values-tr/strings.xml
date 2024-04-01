@@ -13,6 +13,8 @@
     <string name="clear">Bulutu Temizle</string>
     <string name="notifications">Hatırlatıcı Bildirim</string>
     <string name="photo">Fotoğraflarım</string>
+    <string name="mode">Karanlık Mod</string>
+    <string name="database">Veritabanı</string>
     <string name="delete_all_notes">Tüm Günlükleri Sil</string>
     <string name="enter_email_correct_message">E posta adresi bulunamadı.</string>
     <string name="archive">Arşive Taşı</string>
@@ -126,6 +128,7 @@
     <string name="notification_title">Başlık ⏰</string>
     <string name="notification_message">Mesaj 🗨</string>
     <string name="settings_myphotos_title">Fotoğraflarım</string>
+    <string name="settings_database_title">Veritabanı</string>
     <string name="language">Dil</string>
     <string name="turkish">Türkçe</string>
     <string name="english">İngilizce</string>
@@ -138,4 +141,5 @@
     <string name="notification_scheduled_message">Mesaj : </string>
     <string name="notification_scheduled_time">Zaman : </string>
     <string name="notification_scheduled_ok">Tamam</string>
+    <string name="diary_default_date">29 Aralık Çarşamba</string>
 </resources>

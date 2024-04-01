@@ -6,12 +6,12 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
 import com.example.diarybook.R
-import com.example.diarybook.util.Constant.channelID
-import com.example.diarybook.util.Constant.notificationDescription
-import com.example.diarybook.util.Constant.notificationChannelName
-import com.example.diarybook.util.Constant.notificationMessage
-import com.example.diarybook.util.Constant.notificationId
-import com.example.diarybook.util.Constant.notificationTitle
+import com.example.diarybook.constant.Constant.channelID
+import com.example.diarybook.constant.Constant.notificationDescription
+import com.example.diarybook.constant.Constant.notificationChannelName
+import com.example.diarybook.constant.Constant.notificationMessage
+import com.example.diarybook.constant.Constant.notificationId
+import com.example.diarybook.constant.Constant.notificationTitle
 import com.example.diarybook.view.dialog.NotificationDialog
 import java.util.*
 

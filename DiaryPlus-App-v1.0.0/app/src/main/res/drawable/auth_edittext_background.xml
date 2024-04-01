@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <corners android:radius="50dp"></corners>
-    <stroke android:color="@color/auth_edittext_color" android:width="2dp"></stroke>
+    <stroke android:color="@color/black" android:width="2dp"></stroke>
 </shape>

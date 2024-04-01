@@ -38,6 +38,10 @@ class SettingsViewModel (application: Application) : UserViewModel(application) 
         sharedPreferences.saveBooleanData(key, value)
     }
 
+    fun getBooleanData(key: String) : Boolean{
+        return sharedPreferences.getBooleanData(key,false)
+    }
+
 
     fun getUserInfoFromDB() {
         launch {

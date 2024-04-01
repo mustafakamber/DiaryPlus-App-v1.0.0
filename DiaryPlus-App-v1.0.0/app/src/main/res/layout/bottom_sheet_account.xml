@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -13,230 +11,156 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-
         android:id="@+id/settings_account_bottom_sheet"
+        android:layout_gravity="bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bottom_sheet_background"
-        tools:layout_editor_absoluteY="25dp">
+        >
 
         <ImageView
-            android:foreground="?android:attr/selectableItemBackground"
-            android:id="@+id/settingsAccountBackButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/arrow_back_black"
+            android:id="@+id/settingsAccountSwipeIcon"
+            style="@style/BottomSheetSwipeStyle"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-        </ImageView>
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/settingsAccountBackButton"
+            style="@style/BottomSheetBackButtonStyle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/settingsAccountTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="15dp"
+            style="@style/BottomSheetTitleTextStyle"
             android:text="@string/settings_account_title"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </TextView>
-
+            app:layout_constraintTop_toBottomOf="@id/settingsAccountSwipeIcon"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/settingsAccountProfileImage"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="20dp"
+            style="@style/SettingsProfileImageStyle"
+            android:layout_marginTop="@dimen/large_vertical_spacing"
             android:downloadImage="@{accountUser.userImage}"
-            app:civ_border_color="@color/black"
-            app:civ_border_width="2dp"
+            tools:src="@drawable/default_profile_image_home"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/settingsAccountDivider">
-
-        </de.hdodenhof.circleimageview.CircleImageView>
+            app:layout_constraintTop_toBottomOf="@id/settingsAccountDivider"/>
 
         <TextView
             android:id="@+id/settingsAccountProfileNameText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            style="@style/SettingsProfileNameStyle"
+            android:layout_marginTop="@dimen/small_vertical_spacing"
             android:text="@{accountUser.userName}"
-            tools:text="Mustafa"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
+            tools:text="@string/profile_name_default"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/settingsAccountProfileImage" />
-
+            app:layout_constraintTop_toBottomOf="@id/settingsAccountProfileImage" />
 
         <ImageView
             android:id="@+id/settingsAccountChangeProfileNameButton"
             android:foreground="?android:attr/selectableItemBackground"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="10dp"
+            android:layout_width="@dimen/tiny_button_size"
+            android:layout_height="@dimen/tiny_button_size"
+            android:layout_marginStart="@dimen/small_horizontal_spacing"
             android:background="@drawable/change_profile_name_background"
             android:padding="6dp"
             android:src="@drawable/pencil"
-            app:layout_constraintStart_toEndOf="@+id/settingsAccountProfileNameText"
-            app:layout_constraintTop_toBottomOf="@+id/settingsAccountProfileImage">
-
-        </ImageView>
+            app:layout_constraintStart_toEndOf="@id/settingsAccountProfileNameText"
+            app:layout_constraintTop_toBottomOf="@id/settingsAccountProfileImage"/>
 
         <TextView
             android:id="@+id/settingsAccountProfileEmailText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            style="@style/SettingsProfileEmailStyle"
+            android:layout_marginTop="@dimen/small_vertical_spacing"
             android:text="@{accountUser.userEmail}"
-            android:textColor="@color/black"
-            android:textSize="15sp"
+            tools:text="@string/profile_email_default"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/settingsAccountProfileNameText" />
+            app:layout_constraintTop_toBottomOf="@id/settingsAccountProfileNameText"/>
 
         <View
             android:id="@+id/settingsAccountDivider"
-            android:layout_width="391dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="10dp"
-            android:background="?android:attr/listDivider"
+            style="@style/BottomSheetDividerStyle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/settingsAccountTitle" />
-
+            app:layout_constraintTop_toBottomOf="@id/settingsAccountTitle"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="25dp"
-            android:background="@drawable/settings_options_background"
-            android:orientation="vertical"
-            android:padding="15dp"
+            style="@style/SettingsButtonLinearStyle"
+            android:layout_marginBottom="@dimen/large_vertical_spacing"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/settingsAccountProfileEmailText">
+            app:layout_constraintTop_toBottomOf="@id/settingsAccountProfileEmailText">
 
             <RelativeLayout
                 android:id="@+id/changePasswordSettings"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                style="@style/SettingsButtonRelativeStyle"
+                android:layout_marginTop="@dimen/tiny_vertical_spacing">
 
                 <ImageView
                     android:id="@+id/passwordIcon"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/settings_image_view_background"
-                    android:padding="9dp"
+                    style="@style/SettingsButtonImageStyle"
                     android:src="@drawable/base_settings_password" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="20dp"
+                    style="@style/SettingsButtonTextStyle"
                     android:layout_toEndOf="@id/passwordIcon"
                     android:text="@string/change_password"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
+                    />
 
                 <ImageView
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/forward" />
+                    style="@style/SettingsButtonForwardStyle" />
 
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/deleteAccountSettings"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                style="@style/SettingsButtonRelativeStyle"
+                android:layout_marginTop="@dimen/small_vertical_spacing">
 
                 <ImageView
                     android:id="@+id/accountIcon"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/settings_image_view_background"
-                    android:padding="7dp"
+                    style="@style/SettingsButtonImageStyle"
                     android:src="@drawable/base_settings_delete_account" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="10dp"
+                    style="@style/SettingsButtonTextStyle"
                     android:layout_toEndOf="@id/accountIcon"
                     android:text="@string/delete_account"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
+                     />
 
                 <ImageView
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/forward" />
-
+                    style="@style/SettingsButtonForwardStyle" />
 
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/logoutAccountSettings"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                style="@style/SettingsButtonRelativeStyle"
+                android:layout_marginBottom="@dimen/tiny_vertical_spacing"
+                android:layout_marginTop="@dimen/small_vertical_spacing">
 
                 <ImageView
                     android:id="@+id/accountLogoutIcon"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/settings_image_view_background"
-                    android:padding="9dp"
+                    style="@style/SettingsButtonImageStyle"
                     android:src="@drawable/base_settings_logout" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="10dp"
+                    style="@style/SettingsButtonTextStyle"
                     android:layout_toEndOf="@id/accountLogoutIcon"
                     android:text="@string/logout"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
+                     />
 
                 <ImageView
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/forward" />
+                    style="@style/SettingsButtonForwardStyle" />
 
             </RelativeLayout>
 
-
         </LinearLayout>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/settings_database_bottom_sheet"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_sheet_background"
+        >
+
+        <ImageView
+            android:id="@+id/settingsDatabaseSwipeIcon"
+            style="@style/BottomSheetSwipeStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/settingsDatabaseBackButton"
+            style="@style/BottomSheetBackButtonStyle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/settingsDatabaseTitle"
+            style="@style/BottomSheetTitleTextStyle"
+            android:text="@string/settings_database_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/settingsDatabaseSwipeIcon"/>
+
+        <View
+            android:id="@+id/settingsDatabaseDivider"
+            style="@style/BottomSheetDividerStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/settingsDatabaseTitle"/>
+
+        <LinearLayout
+            style="@style/SettingsButtonLinearStyle"
+            android:layout_marginBottom="@dimen/large_vertical_spacing"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/settingsDatabaseDivider"
+            >
+
+            <RelativeLayout
+                android:id="@+id/deleteSettings"
+                style="@style/SettingsButtonRelativeStyle"
+                android:layout_marginTop="@dimen/tiny_vertical_spacing">
+
+                <ImageView
+                    android:id="@+id/deleteIcon"
+                    style="@style/SettingsButtonImageStyle"
+                    android:src="@drawable/base_settings_delete" />
+
+                <TextView
+                    style="@style/SettingsButtonTextStyle"
+                    android:layout_toEndOf="@id/deleteIcon"
+                    android:text="@string/delete_all_notes" />
+
+                <ImageView style="@style/SettingsButtonForwardStyle" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/archiveSettings"
+                style="@style/SettingsButtonRelativeStyle"
+                android:layout_marginTop="@dimen/small_vertical_spacing">
+
+                <ImageView
+                    android:id="@+id/archiveIcon"
+                    style="@style/SettingsButtonImageStyle"
+                    android:src="@drawable/base_settings_archive" />
+
+                <TextView
+                    style="@style/SettingsButtonTextStyle"
+                    android:layout_toEndOf="@id/archiveIcon"
+                    android:text="@string/archive" />
+
+                <ImageView style="@style/SettingsButtonForwardStyle" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/restoreSettings"
+                style="@style/SettingsButtonRelativeStyle"
+                android:layout_marginTop="@dimen/small_vertical_spacing">
+
+                <ImageView
+                    android:id="@+id/restoreIcon"
+                    style="@style/SettingsButtonImageStyle"
+                    android:src="@drawable/base_settings_unarchive" />
+
+                <TextView
+                    style="@style/SettingsButtonTextStyle"
+                    android:layout_toEndOf="@id/restoreIcon"
+                    android:text="@string/restore" />
+
+                <ImageView style="@style/SettingsButtonForwardStyle" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/backupSettings"
+                style="@style/SettingsButtonRelativeStyle"
+                android:layout_marginTop="@dimen/small_vertical_spacing">
+
+                <ImageView
+                    android:id="@+id/backupIcon"
+                    style="@style/SettingsButtonImageStyle"
+                    android:src="@drawable/base_settings_backup" />
+
+                <TextView
+                    style="@style/SettingsButtonTextStyle"
+                    android:layout_toEndOf="@id/backupIcon"
+                    android:text="@string/backup" />
+
+                <ImageView style="@style/SettingsButtonForwardStyle" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/backloadSettings"
+                style="@style/SettingsButtonRelativeStyle"
+                android:layout_marginTop="@dimen/small_vertical_spacing">
+
+                <ImageView
+                    android:id="@+id/backloadIcon"
+                    style="@style/SettingsButtonImageStyle"
+                    android:src="@drawable/base_settings_backload" />
+
+                <TextView
+                    style="@style/SettingsButtonTextStyle"
+                    android:layout_toEndOf="@id/backloadIcon"
+                    android:text="@string/backload" />
+
+                <ImageView style="@style/SettingsButtonForwardStyle" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/clearSettings"
+                style="@style/SettingsButtonRelativeStyle"
+                android:layout_marginTop="@dimen/small_vertical_spacing"
+                android:layout_marginBottom="@dimen/tiny_vertical_spacing">
+
+                <ImageView
+                    android:id="@+id/clearIcon"
+                    style="@style/SettingsButtonImageStyle"
+                    android:src="@drawable/base_settings_clear" />
+
+                <TextView
+                    style="@style/SettingsButtonTextStyle"
+                    android:layout_toEndOf="@id/clearIcon"
+                    android:text="@string/clear" />
+
+                <ImageView style="@style/SettingsButtonForwardStyle" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

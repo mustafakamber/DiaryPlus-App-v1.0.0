@@ -16,10 +16,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.diarybook.R.string
 import com.example.diarybook.databinding.FragmentLoginBinding
-import com.example.diarybook.util.*
-import com.example.diarybook.util.Constant.EMAIL_DATA
-import com.example.diarybook.util.Constant.WEB_CLIENT_ID
-import com.example.diarybook.util.Constant.nullEmail
+import com.example.diarybook.constant.Constant.EMAIL_DATA
+import com.example.diarybook.constant.Constant.WEB_CLIENT_ID
+import com.example.diarybook.constant.Constant.nullEmail
 import com.example.diarybook.view.activity.BaseActivity
 import com.example.diarybook.view.sheet.PasswordSheet
 import com.example.diarybook.viewmodel.LoginViewModel

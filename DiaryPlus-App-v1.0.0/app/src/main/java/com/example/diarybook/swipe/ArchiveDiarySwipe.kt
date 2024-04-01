@@ -13,8 +13,8 @@ abstract class ArchiveDiarySwipe(context: Context) : ItemTouchHelper.SimpleCallb
     ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
 ) {
 
-    val deleteColor = ContextCompat.getColor(context, R.color.dark_blue)
-    val restoreColor = ContextCompat.getColor(context, R.color.gray)
+    val deleteColor = ContextCompat.getColor(context, R.color.red)
+    val restoreColor = ContextCompat.getColor(context, R.color.green)
     val deleteIcon = R.drawable.swipe_delete
     val restoreIcon = R.drawable.swipe_unarchive
 

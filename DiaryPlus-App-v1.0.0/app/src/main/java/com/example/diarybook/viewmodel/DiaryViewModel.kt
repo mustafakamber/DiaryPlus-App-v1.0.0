@@ -18,7 +18,7 @@ import com.example.diarybook.service.DatabaseService.GetService
 import com.example.diarybook.service.DatabaseService.SaveService
 import com.example.diarybook.service.DatabaseService.UpdateService
 import com.example.diarybook.util.SharedPreferences
-import com.example.diarybook.util.Constant.NOTE_DATA
+import com.example.diarybook.constant.Constant.NOTE_DATA
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

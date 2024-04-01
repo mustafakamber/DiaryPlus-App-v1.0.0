@@ -17,6 +17,7 @@ import android.os.Handler
 import android.os.HandlerThread
 import android.view.Surface
 import android.view.TextureView
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
@@ -24,7 +25,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.diarybook.R
 import com.example.diarybook.databinding.ActivityCameraBinding
-import com.example.diarybook.util.Constant.CAMERA_PHOTO
+import com.example.diarybook.constant.Constant.CAMERA_PHOTO
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class CameraActivity : AppCompatActivity() {
@@ -39,7 +40,6 @@ class CameraActivity : AppCompatActivity() {
     lateinit var handlerThread: HandlerThread
     lateinit var cameraManager: CameraManager
 
-
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         cameraActivityBinding = ActivityCameraBinding.inflate(layoutInflater)
@@ -48,7 +48,7 @@ class CameraActivity : AppCompatActivity() {
 
             cameraViewModel = ViewModelProvider(this@CameraActivity)[CameraViewModel::class.java]
 
-            val captureButton = findViewById<FloatingActionButton>(R.id.cameraCaptureButton)
+            val captureButton = findViewById<ImageView>(R.id.cameraCaptureButton)
 
             handlerInit()
             observeLiveData()

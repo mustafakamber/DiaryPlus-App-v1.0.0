@@ -20,7 +20,7 @@ class ColorAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(colors: Array<String>, position: Int) {
             with(itemView) {
-                color_image.setImageDrawable(
+                colorImage.setImageDrawable(
                     Color.parseColor(colors[position]).toDrawable()
                 )
             }

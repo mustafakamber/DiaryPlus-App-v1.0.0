@@ -1,4 +1,8 @@
 <resources>
+    <!-- Dont Transletable -->
+    <string name="home_banner_unit_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="archive_banner_unit_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="banner_size" translatable="false">BANNER</string>
     <string name="app_name">Diary Plus</string>
     <string name="search_from_notes">Search in diaries..</string>
     <string name="home_title">Here are your diaries!</string>
@@ -12,6 +16,8 @@
     <string name="backup">Backup to Cloud</string>
     <string name="backload">Restore from Cloud</string>
     <string name="clear">Clear the Cloud</string>
+    <string name="mode">Dark Mode</string>
+    <string name="database">Database</string>
     <string name="notifications">Reminder Notification</string>
     <string name="photo">My Photos</string>
     <string name="delete_all_notes">Delete all Diaries</string>
@@ -33,7 +39,7 @@
     <string name="auth_login_password_queryhint">Password</string>
     <string name="auth_login_remember_me_text">Remember me</string>
     <string name="auth_signin_button_text">Sign in</string>
-    <string name="auth_forgot_password_text">Forgot password</string>
+    <string name="auth_forgot_password_text">Forgot password?</string>
     <string name="auth_signin_with_google_button_text">Continue with Google</string>
     <string name="auth_donthave_account">Don\'t have an account?</string>
     <string name="auth_create_here_button_text"><u>Create here</u></string>
@@ -126,6 +132,7 @@
     <string name="notification_title">Title ⏰</string>
     <string name="notification_message">Message 🗨</string>
     <string name="settings_myphotos_title">My Photos</string>
+    <string name="settings_database_title">Database</string>
     <string name="language">Language</string>
     <string name="turkish">Turkish</string>
     <string name="english">English</string>
@@ -138,4 +145,5 @@
     <string name="notification_scheduled_message">Message : </string>
     <string name="notification_scheduled_time">At : </string>
     <string name="notification_scheduled_ok">Okay</string>
+    <string name="diary_default_date">29 December Wednesday</string>
 </resources>

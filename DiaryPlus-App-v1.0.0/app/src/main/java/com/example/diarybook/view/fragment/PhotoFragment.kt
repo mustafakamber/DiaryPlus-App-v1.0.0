@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.diarybook.R
 import com.example.diarybook.databinding.FragmentPhotoBinding
-import com.example.diarybook.util.Constant.FULL_PHOTO_DATA
+import com.example.diarybook.constant.Constant.FULL_PHOTO_DATA
 import com.example.diarybook.util.downloadImageFromUrl
 import com.example.diarybook.util.placeHolderProgressBar
 import kotlinx.android.synthetic.main.activity_base.*
@@ -24,7 +24,6 @@ class PhotoFragment : Fragment() {
     ): View {
         photoFragmentBinding = FragmentPhotoBinding.inflate(layoutInflater)
         return photoFragmentBinding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) =
@@ -36,6 +35,7 @@ class PhotoFragment : Fragment() {
             requireActivity().bottomMenu.visibility = View.GONE
 
             val fullPhotoFromAdapter = arguments?.getParcelable<Uri>(FULL_PHOTO_DATA)
+
 
             photoImageView.downloadImageFromUrl(
                 fullPhotoFromAdapter.toString(),

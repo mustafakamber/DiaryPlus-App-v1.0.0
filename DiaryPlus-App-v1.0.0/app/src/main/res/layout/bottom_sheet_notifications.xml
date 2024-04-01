@@ -1,141 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/bottom_sheet_background"
-    >
+    android:background="@drawable/bottom_sheet_background">
 
     <ImageView
-        android:foreground="?android:attr/selectableItemBackground"
-        android:id="@+id/notificationBackButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:src="@drawable/arrow_back_black"
+        android:id="@+id/notificationSwipeIcon"
+        style="@style/BottomSheetSwipeStyle"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-    </ImageView>
-
+    <ImageView
+        android:id="@+id/notificationBackButton"
+        style="@style/BottomSheetBackButtonStyle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/notificationTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        style="@style/BottomSheetTitleTextStyle"
         android:text="@string/settings_notifications_title"
-        android:textColor="@color/black"
-        android:textSize="16dp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></TextView>
+        app:layout_constraintTop_toBottomOf="@id/notificationSwipeIcon"/>
 
     <View
         android:id="@+id/notificationsDivider"
-        android:layout_width="391dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="10dp"
-        android:background="?android:attr/listDivider"
+        style="@style/BottomSheetDividerStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notificationTitle" />
+        app:layout_constraintTop_toBottomOf="@id/notificationTitle"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/notificationTitleLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
+        style="@style/TextInputLayoutStyle"
+        android:layout_marginStart="@dimen/medium_horizontal_spacing"
+        android:layout_marginTop="@dimen/huge_vertical_spacing"
+        android:layout_marginEnd="@dimen/medium_horizontal_spacing"
         app:endIconMode="clear_text"
-        app:endIconTint="@color/dark_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/notificationsDivider"
-        app:shapeAppearanceOverlay="@style/FabShapeStyleThree">
+        app:layout_constraintTop_toTopOf="@id/notificationsDivider"
+        app:shapeAppearanceOverlay="@style/TextInputLayoutShape">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/notificationTitleText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
+            style="@style/TextInputEditTextStyle"
             android:hint="@string/notification_title"
             android:inputType="textPersonName"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+             />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/notificationMessageLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="20dp"
+        style="@style/TextInputLayoutStyle"
+        android:layout_marginStart="@dimen/medium_horizontal_spacing"
+        android:layout_marginTop="@dimen/small_vertical_spacing"
+        android:layout_marginEnd="@dimen/medium_horizontal_spacing"
         app:endIconMode="clear_text"
-        app:endIconTint="@color/dark_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notificationTitleLayout"
-        app:shapeAppearanceOverlay="@style/FabShapeStyleThree">
+        app:layout_constraintTop_toBottomOf="@id/notificationTitleLayout"
+        app:shapeAppearanceOverlay="@style/TextInputLayoutShape">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/notificationMessageText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
+            style="@style/TextInputEditTextStyle"
             android:hint="@string/notification_message"
             android:inputType="textPersonName"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+             />
 
     </com.google.android.material.textfield.TextInputLayout>
-
 
     <LinearLayout
         android:id="@+id/timeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/notificationMessageLayout">
+        app:layout_constraintTop_toBottomOf="@id/notificationMessageLayout">
 
         <DatePicker
             android:id="@+id/notificationsDatePicker"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="-30dp"
-            android:layout_marginRight="-30dp"
-            android:layout_weight="1"
             android:calendarViewShown="false"
             android:datePickerMode="spinner"
-            android:scaleX="0.7"
-            android:scaleY="0.7"
+            style="@style/PickerStyle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TimePicker
             android:id="@+id/notificationsTimePicker"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="-30dp"
-            android:layout_marginRight="-30dp"
-            android:layout_weight="1"
-            android:scaleX="0.7"
-            android:scaleY="0.7"
+            style="@style/PickerStyle"
             android:timePickerMode="spinner"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -143,20 +102,15 @@
 
     </LinearLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/notificationsSubmitButton"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/rectangle_blue_button_background"
+        style="@style/smallFillButtonStyle"
+        android:layout_marginTop="@dimen/small_vertical_spacing"
+        android:layout_marginBottom="@dimen/large_vertical_spacing"
         android:text="@string/submit"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timeLayout" />
+        app:layout_constraintTop_toBottomOf="@id/timeLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,7 @@
 package com.example.diarybook.view.sheet
 
+import android.annotation.SuppressLint
 import android.content.Context
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
@@ -16,6 +16,7 @@ import com.google.android.material.textfield.TextInputEditText
 
     private lateinit var passwordBottomSheet : BottomSheetDialog
 
+
      fun getResetSheet(email: String) {
 
         passwordBottomSheet = BottomSheetDialog(context, R.style.BottomSheetDialogTheme)
@@ -25,10 +26,10 @@ import com.google.android.material.textfield.TextInputEditText
             null
         )
 
-        val emailText = bottomSheetView.findViewById<TextInputEditText>(R.id.reset_email_edittext)
-        val sendButton = bottomSheetView.findViewById<Button>(R.id.reset_send_button)
-        val backButton = bottomSheetView.findViewById<TextView>(R.id.reset_back_button)
-        val infoText = bottomSheetView.findViewById<TextView>(R.id.reset_info_text)
+        val emailText = bottomSheetView.findViewById<TextInputEditText>(R.id.resetEmailEdittext)
+        val sendButton = bottomSheetView.findViewById<Button>(R.id.resetSendButton)
+        val backButton = bottomSheetView.findViewById<TextView>(R.id.resetBackButton)
+        val infoText = bottomSheetView.findViewById<TextView>(R.id.resetInfoText)
 
 
          backButton.visibility = View.GONE

@@ -1,92 +1,60 @@
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    >
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/change_name_alert_dialog"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteY="25dp"
-        >
+        android:id="@+id/change_name_alert_dialog"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:background="?attr/colorSurface">
 
         <TextView
-            android:id="@+id/change_name_title"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
+            android:id="@+id/changeNameTitle"
             android:text="@string/change_name_title"
-            android:textColor="@color/bottom_sheet_title_text_color"
-            android:textSize="16sp"
-            android:textStyle="bold"
+            style="@style/BottomSheetTitleTextStyle"
+            android:layout_marginTop="@dimen/small_vertical_spacing"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-        </TextView>
-
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/change_name_layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="35dp"
-            android:layout_marginEnd="20dp"
+            android:id="@+id/changeNameLayout"
+            style="@style/TextInputLayoutStyle"
+            android:layout_marginStart="@dimen/medium_horizontal_spacing"
+            android:layout_marginTop="@dimen/huge_vertical_spacing"
+            android:layout_marginEnd="@dimen/medium_horizontal_spacing"
             app:endIconMode="clear_text"
-            app:endIconTint="@color/auth_edittext_icon_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/change_name_title"
-            app:shapeAppearanceOverlay="@style/FabShapeStyleThree"
-            >
+            app:layout_constraintTop_toBottomOf="@id/changeNameTitle"
+            app:shapeAppearanceOverlay="@style/TextInputLayoutShape">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/change_name_edittext"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
+                android:id="@+id/changeNameEdittext"
+                style="@style/TextInputEditTextStyle"
                 android:hint="@string/change_name_queryhint"
-                android:inputType="textPersonName"
-                android:textColor="@color/auth_login_email_edittext_color"
-                android:textSize="15dp" />
+                android:inputType="textPersonName" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/change_name_button"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="25dp"
-            android:background="@drawable/rectangle_blue_button_background"
-            android:gravity="center"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/changeNameButton"
+            style="@style/smallFillButtonStyle"
+            android:layout_marginTop="@dimen/large_vertical_spacing"
+            android:layout_marginBottom="@dimen/large_vertical_spacing"
             android:text="@string/change"
-            android:textAllCaps="false"
-            android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/change_name_layout">
-
-        </Button>
+            app:layout_constraintTop_toBottomOf="@id/changeNameLayout" />
 
         <View
             android:id="@+id/changeDivider"
-            android:layout_width="391dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="10dp"
-            android:background="?android:attr/listDivider"
+            style="@style/BottomSheetDividerStyle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/change_name_title" />
-
+            app:layout_constraintTop_toBottomOf="@id/changeNameTitle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 </layout>

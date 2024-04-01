@@ -16,10 +16,10 @@ import com.example.diarybook.R
 import com.example.diarybook.adapter.DiaryAdapter
 import com.example.diarybook.databinding.FragmentCalendarBinding
 import com.example.diarybook.model.Diary
-import com.example.diarybook.util.Constant.CALENDAR_KEY
-import com.example.diarybook.util.Constant.NOTE_DATA
-import com.example.diarybook.util.Constant.SELECTED_CALENDAR_DATE_EN
-import com.example.diarybook.util.Constant.SELECTED_CALENDAR_DATE_TR
+import com.example.diarybook.constant.Constant.CALENDAR_KEY
+import com.example.diarybook.constant.Constant.NOTE_DATA
+import com.example.diarybook.constant.Constant.SELECTED_CALENDAR_DATE_EN
+import com.example.diarybook.constant.Constant.SELECTED_CALENDAR_DATE_TR
 import com.example.diarybook.view.activity.DiaryActivity
 import com.example.diarybook.view.dialog.DatePickerDialog
 import com.example.diarybook.viewmodel.CalendarViewModel

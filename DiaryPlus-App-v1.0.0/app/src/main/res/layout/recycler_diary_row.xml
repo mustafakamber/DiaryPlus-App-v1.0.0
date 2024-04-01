@@ -13,56 +13,50 @@
             type="com.example.diarybook.adapter.DiaryClickListener" />
     </data>
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
 
-        android:id="@+id/recycler_firebase_row"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{diaryListener::onDiaryClicked}"
-
-        >
+        android:onClick="@{diaryListener::onDiaryClicked}">
 
         <TextView
             android:id="@+id/noteId"
             android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{diaryRow.diaryId}"
-            >
-        </TextView>
-
+            android:text="@{diaryRow.diaryId}" />
 
         <TextView
             android:id="@+id/noteDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="@dimen/tiny_horizontal_spacing"
+            android:layout_marginTop="@dimen/tiny_vertical_spacing"
+            tools:text="@string/diary_default_date"
             android:textColor="@color/gray"
-            android:textSize="16sp"
+            android:textSize="@dimen/medium_text_size"
             android:textStyle="bold"
             android:setDate="@{diaryRow}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-        </TextView>
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/noteView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="5dp"
-            app:cardCornerRadius="10dp"
+            android:layout_marginStart="@dimen/tiny_horizontal_spacing"
+            android:layout_marginEnd="@dimen/tiny_horizontal_spacing"
+            android:layout_marginTop="@dimen/small_vertical_spacing"
+            android:layout_marginBottom="@dimen/extra_tiny_vertical_spacing"
+            app:cardCornerRadius="@dimen/extra_tiny_radius_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/noteDate">
+            app:layout_constraintTop_toBottomOf="@id/noteDate">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/noteButton"
+                tools:background="?attr/colorPrimary"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:setBackgroundColor="@{diaryRow.diaryBackgroundColor}"
                 android:layout_width="match_parent"
@@ -70,78 +64,65 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/noteDate">
+                app:layout_constraintTop_toBottomOf="@id/noteDate">
 
                 <TextView
                     android:id="@+id/noteTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="7dp"
+                    android:layout_marginStart="@dimen/small_horizontal_spacing"
+                    android:layout_marginTop="@dimen/tiny_vertical_spacing"
                     android:setTitleTextTruncate="@{diaryRow.diaryTitle}"
                     android:setTextColor="@{diaryRow.diaryTextColor}"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/large_text_size"
+                    tools:text="Note Title"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                </TextView>
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <TextView
                     android:id="@+id/noteContent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="7dp"
+                    android:layout_marginStart="@dimen/small_horizontal_spacing"
+                    android:layout_marginTop="@dimen/medium_vertical_spacing"
+                    android:layout_marginBottom="@dimen/tiny_vertical_spacing"
+                    tools:text="Note Content"
                     android:setContentTextTruncate="@{diaryRow.diaryContent}"
                     android:setTextColor="@{diaryRow.diaryTextColor}"
-                    android:textSize="15sp"
+                    android:textSize="@dimen/medium_text_size"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/noteTitle">
-
-                </TextView>
+                    app:layout_constraintTop_toBottomOf="@id/noteTitle"/>
 
                 <TextView
                     android:id="@+id/noteTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginEnd="15dp"
+                    android:layout_marginTop="@dimen/tiny_vertical_spacing"
+                    android:layout_marginEnd="@dimen/small_horizontal_spacing"
                     android:text="@{diaryRow.diaryTime}"
-                    android:textColor="@color/dark_blue"
+                    android:setTextColor="@{diaryRow.diaryTextColor}"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                </TextView>
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <TextView
                     android:id="@+id/notePhotoPiece"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginBottom="7dp"
+                    android:layout_marginEnd="@dimen/small_horizontal_spacing"
+                    android:layout_marginBottom="@dimen/tiny_vertical_spacing"
                     android:drawableLeft="@drawable/photopiece"
-                    android:gravity="center"
                     android:textPhotoPiece="@{diaryRow.diaryPhoto}"
                     android:textAlignment="center"
-                    android:textColor="@color/dark_blue"
+                    android:setTextColor="@{diaryRow.diaryTextColor}"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent">
-
-                </TextView>
-
-
+                    app:layout_constraintEnd_toEndOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
 
-
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </layout>

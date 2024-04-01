@@ -22,7 +22,7 @@ import com.example.diarybook.adapter.DiaryAdapter
 import com.example.diarybook.databinding.FragmentArchiveBinding
 import com.example.diarybook.model.Diary
 import com.example.diarybook.swipe.ArchiveDiarySwipe
-import com.example.diarybook.util.Constant.ARCHIVE_KEY
+import com.example.diarybook.constant.Constant.ARCHIVE_KEY
 import com.example.diarybook.viewmodel.ArchiveViewModel
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView

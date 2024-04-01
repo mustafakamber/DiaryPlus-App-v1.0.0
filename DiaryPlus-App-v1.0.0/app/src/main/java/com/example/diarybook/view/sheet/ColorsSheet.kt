@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.diarybook.R
 import com.example.diarybook.adapter.ColorAdapter
-import com.example.diarybook.util.Constant.BACKGROUND_DATA
-import com.example.diarybook.util.Constant.blackHexCode
-import com.example.diarybook.util.Constant.whiteHexCode
+import com.example.diarybook.constant.Constant.BACKGROUND_DATA
+import com.example.diarybook.constant.Constant.blackHexCode
+import com.example.diarybook.constant.Constant.whiteHexCode
 import com.example.diarybook.viewmodel.DiaryViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
@@ -76,7 +76,7 @@ class ColorsSheet
 
         colorsBottomSheet?.show()
 
-        val recyclerColorView = bottomSheetView.findViewById<RecyclerView>(R.id.recycler_color_view)
+        val recyclerColorView = bottomSheetView.findViewById<RecyclerView>(R.id.recyclerColorView)
 
         recyclerColorView.layoutManager = LinearLayoutManager(
             context,
@@ -88,7 +88,7 @@ class ColorsSheet
             colorClicked(newColor)
         }
 
-        val backButton = bottomSheetView.findViewById<ImageView>(R.id.color_back_button)
+        val backButton = bottomSheetView.findViewById<ImageView>(R.id.colorBackButton)
 
 
         backButton.setOnClickListener {

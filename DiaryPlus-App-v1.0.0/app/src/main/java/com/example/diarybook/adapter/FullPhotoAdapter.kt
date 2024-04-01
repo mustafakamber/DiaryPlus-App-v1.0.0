@@ -5,17 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.Navigation
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.diarybook.R
 import com.example.diarybook.databinding.RecyclerFullPhotoRowBinding
-import com.example.diarybook.util.Constant.FULL_PHOTO_DATA
+import com.example.diarybook.constant.Constant.FULL_PHOTO_DATA
 import com.example.diarybook.util.downloadImageFromUrl
 import com.example.diarybook.util.placeHolderProgressBar
 import com.example.diarybook.view.fragment.PhotoFragment
-import com.example.diarybook.view.fragment.SettingsFragmentDirections
 
 
 class FullPhotoAdapter(val myPhotos: MutableList<Uri>,

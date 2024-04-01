@@ -19,8 +19,8 @@ class NameDialog(private val activity: Activity, private val context: Context, p
         val inflater = activity.layoutInflater
         val dialogLayout = inflater.inflate(R.layout.alert_dialog_change_name, null)
 
-        val changeNameEditText = dialogLayout.findViewById<EditText>(R.id.change_name_edittext)
-        val changeNameButton = dialogLayout.findViewById<Button>(R.id.change_name_button)
+        val changeNameEditText = dialogLayout.findViewById<EditText>(R.id.changeNameEdittext)
+        val changeNameButton = dialogLayout.findViewById<Button>(R.id.changeNameButton)
 
         changeNameButton.setOnClickListener {
             val newName = changeNameEditText.text.toString().trim()

@@ -2,46 +2,41 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    >
-    <RelativeLayout
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:background="@color/black"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".view.activity.CameraActivity">
 
         <TextureView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:id="@+id/cameraTexture"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginTop="75dp"
-            android:layout_marginBottom="175dp"
-            >
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/match_constraint_size"
+            android:layout_marginStart="@dimen/extra_tiny_horizontal_spacing"
+            android:layout_marginTop="@dimen/extra_huge_vertical_spacing"
+            android:layout_marginEnd="@dimen/extra_tiny_horizontal_spacing"
+            app:layout_constraintBottom_toTopOf="@id/cameraCaptureButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        </TextureView>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:foreground="?android:attr/selectableItemBackground"
+        <ImageView
             android:id="@+id/cameraCaptureButton"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:layout_width="@dimen/normal_button_size"
+            android:layout_height="@dimen/normal_button_size"
+            android:layout_marginTop="@dimen/extra_huge_vertical_spacing"
+            android:layout_marginBottom="@dimen/extra_huge_vertical_spacing"
             android:background="@drawable/square_blue_button_background"
-            android:padding="15dp"
+            android:padding="@dimen/large_padding_size"
             android:src="@drawable/camera"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="60dp"
-            >
-        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cameraTexture" />
 
-    </RelativeLayout>
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

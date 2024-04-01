@@ -18,8 +18,7 @@
         android:id="@+id/placeHolder"
         android:enabled="false"
         android:title=""
-        ></item>
-
+        />
 
     <item
         android:icon="@drawable/outline_archive"

@@ -9,14 +9,12 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:foreground="?android:attr/selectableItemBackground"
-        android:id="@+id/color_image"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_margin="10dp"
-        app:civ_border_width="1dp"
-        app:civ_border_color="#FF000000"
-        >
-    </de.hdodenhof.circleimageview.CircleImageView>
-
+        android:id="@+id/colorImage"
+        android:layout_width="@dimen/small_button_size"
+        android:layout_height="@dimen/small_button_size"
+        android:layout_margin="@dimen/tiny_padding_size"
+        app:civ_border_width="@dimen/small_stroke_size"
+        app:civ_border_color="?attr/colorSecondary"
+        />
 
 </LinearLayout>

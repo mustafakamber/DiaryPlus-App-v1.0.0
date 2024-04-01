@@ -12,8 +12,8 @@ import com.example.diarybook.R
 import com.example.diarybook.databinding.RecyclerDiaryRowBinding
 import com.example.diarybook.model.Diary
 import com.example.diarybook.util.SharedPreferences
-import com.example.diarybook.util.Constant.ARCHIVE_KEY
-import com.example.diarybook.util.Constant.NOTE_DATA
+import com.example.diarybook.constant.Constant.ARCHIVE_KEY
+import com.example.diarybook.constant.Constant.NOTE_DATA
 import com.example.diarybook.view.activity.DiaryActivity
 import kotlinx.android.synthetic.main.recycler_diary_row.view.*
 import kotlin.collections.ArrayList

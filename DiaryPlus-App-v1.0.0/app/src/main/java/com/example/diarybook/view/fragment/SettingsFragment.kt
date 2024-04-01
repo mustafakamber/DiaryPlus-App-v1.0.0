@@ -3,29 +3,31 @@ package com.example.diarybook.view.fragment
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.diarybook.R
-import com.example.diarybook.databinding.FragmentSettingsBinding
 import com.example.diarybook.broadcast.Notification
-import com.example.diarybook.util.*
-import com.example.diarybook.util.Constant.LANGUAGE_DATA
-import com.example.diarybook.util.Constant.githubAccount
-import com.example.diarybook.util.Constant.gmailAccount
-import com.example.diarybook.util.Constant.languageCodeEn
-import com.example.diarybook.util.Constant.languageCodeTr
+import com.example.diarybook.constant.Constant.LANGUAGE_DATA
+import com.example.diarybook.constant.Constant.githubAccount
+import com.example.diarybook.constant.Constant.gmailAccount
+import com.example.diarybook.constant.Constant.languageCodeEn
+import com.example.diarybook.constant.Constant.languageCodeTr
+import com.example.diarybook.databinding.FragmentSettingsBinding
+import com.example.diarybook.util.setAppLanguage
 import com.example.diarybook.view.activity.AuthActivity
 import com.example.diarybook.view.dialog.ConfirmationDialog
 import com.example.diarybook.view.dialog.LanguageDialog
 import com.example.diarybook.view.sheet.AccountSheet
+import com.example.diarybook.view.sheet.DatabaseSheet
 import com.example.diarybook.view.sheet.MyPhotosSheet
 import com.example.diarybook.view.sheet.NotificationSheet
 import com.example.diarybook.view.sheet.PasswordSheet
@@ -33,25 +35,26 @@ import com.example.diarybook.viewmodel.PasswordViewModel
 import com.example.diarybook.viewmodel.SettingsViewModel
 import com.example.diarybook.viewmodel.UserViewModel
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_base.*
+import kotlinx.android.synthetic.main.activity_base.bottomAddNoteButton
+import kotlinx.android.synthetic.main.activity_base.bottomMenuView
 
 
 class SettingsFragment : Fragment() {
 
     private lateinit var settingsFragmentBinding: FragmentSettingsBinding
 
-
     private lateinit var settingsViewModel: SettingsViewModel
     private lateinit var passwordViewModel: PasswordViewModel
     private lateinit var userViewModel: UserViewModel
 
-    private lateinit var myPhotos : MyPhotosSheet
-    private lateinit var confirmation : ConfirmationDialog
-    private lateinit var notificationSheet : NotificationSheet
-    private lateinit var notificationService : Notification
-    private lateinit var languagePicker : LanguageDialog
-    private lateinit var accountDetails : AccountSheet
-    private lateinit var resetPassword : PasswordSheet
+    private lateinit var myPhotos: MyPhotosSheet
+    private lateinit var database: DatabaseSheet
+    private lateinit var confirmation: ConfirmationDialog
+    private lateinit var notificationSheet: NotificationSheet
+    private lateinit var notificationService: Notification
+    private lateinit var languagePicker: LanguageDialog
+    private lateinit var accountDetails: AccountSheet
+    private lateinit var resetPassword: PasswordSheet
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,6 +67,7 @@ class SettingsFragment : Fragment() {
         accountDetails = AccountSheet(requireActivity(),requireContext(),settingsViewModel,passwordViewModel)
         myPhotos = MyPhotosSheet(requireContext(), settingsViewModel)
         confirmation = ConfirmationDialog(requireContext())
+        database = DatabaseSheet(requireContext(), settingsViewModel)
         notificationSheet = NotificationSheet(requireContext())
         notificationService = Notification()
         languagePicker = LanguageDialog(requireContext(), requireActivity())
@@ -80,24 +84,39 @@ class SettingsFragment : Fragment() {
         return settingsFragmentBinding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(settingsFragmentBinding) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         observeLiveData()
 
-        settingsViewModel.getUserInfoFromDB()
 
-        requireActivity().bottomAddNoteButton.visibility = View.GONE
-
-
-        val callback = object : OnBackPressedCallback(true){
+        val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 backToHomeFragment()
             }
         }
 
-
         requireActivity().onBackPressedDispatcher.addCallback(callback)
+
+        setupSettingsScreen()
+
+    }
+
+    override fun onPause() {
+        super.onPause()
+        requireActivity().bottomAddNoteButton.visibility = View.VISIBLE
+    }
+
+    override fun onResume() {
+        super.onResume()
+        requireActivity().bottomAddNoteButton.visibility = View.GONE
+    }
+
+    private fun setupSettingsScreen() = with(settingsFragmentBinding) {
+
+        settingsViewModel.getUserInfoFromDB()
+
+        requireActivity().bottomAddNoteButton.visibility = View.GONE
 
         notificationSettings.setOnClickListener {
             notificationSheet.getNotificationSheet(requireActivity())
@@ -117,66 +136,39 @@ class SettingsFragment : Fragment() {
 
         }
 
+
+        /*
+        val currentNightMode =
+            resources.configuration.uiMode and android.content.res.Configuration.UI_MODE_NIGHT_MASK
+        modeSwitch.isChecked =
+            currentNightMode == android.content.res.Configuration.UI_MODE_NIGHT_YES
+
+
+        modeSwitch.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                // Mevcut tema gündüzse geceye geç
+                if (currentNightMode != android.content.res.Configuration.UI_MODE_NIGHT_YES) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    reloadSettingsFragment()
+                }
+            } else {
+                // Mevcut tema geceyse gündüze geç
+                if (currentNightMode != android.content.res.Configuration.UI_MODE_NIGHT_NO) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    reloadSettingsFragment()
+                }
+            }
+        }
+
+         */
+
+
         photoSettings.setOnClickListener {
             myPhotos.getMyPhotosSheet()
         }
 
-        deleteSettings.setOnClickListener {
-
-            confirmation.getConfirmationDialog(
-                getString(R.string.delete_note_message)
-            ){
-                settingsViewModel.deleteAllNotes()
-            }
-
-        }
-
-        archiveSettings.setOnClickListener {
-
-            confirmation.getConfirmationDialog(
-                getString(R.string.archive_note_message)
-            ) {
-                settingsViewModel.moveAllNoteToArchive()
-            }
-
-        }
-
-        restoreSettings.setOnClickListener {
-
-            confirmation.getConfirmationDialog(
-                getString(R.string.note_archive_message)
-            ) {
-                settingsViewModel.moveAllArchiveToNote()
-            }
-
-        }
-
-        backupSettings.setOnClickListener {
-
-            confirmation.getConfirmationDialog(
-                getString(R.string.note_backup_message)
-            ) {
-                settingsViewModel.backupAllNotes()
-            }
-
-        }
-
-        backloadSettings.setOnClickListener {
-
-            confirmation.getConfirmationDialog(
-                getString(R.string.note_backload_message)
-            ){
-                settingsViewModel.backloadAllNotes()
-            }
-
-        }
-
-        clearSettings.setOnClickListener {
-            confirmation.getConfirmationDialog(
-                getString(R.string.note_clear_message)
-            ){
-                settingsViewModel.deleteCloud()
-            }
+        databaseSettings.setOnClickListener {
+            database.getDatabaseSheet()
         }
 
         aboutSettings.setOnClickListener {
@@ -200,21 +192,11 @@ class SettingsFragment : Fragment() {
         }
     }
 
-    override fun onPause() {
-        super.onPause()
-        requireActivity().bottomAddNoteButton.visibility = View.VISIBLE
-    }
-
-    override fun onResume() {
-        super.onResume()
-        requireActivity().bottomAddNoteButton.visibility = View.GONE
-    }
-
     private fun observeLiveData() = with(settingsFragmentBinding) {
 
         settingsViewModel.settingsToastMessage.observe(viewLifecycleOwner, Observer { error ->
             error?.let {
-                Toast.makeText(requireContext(),error, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
             }
         })
 

@@ -1,204 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
 
    <androidx.constraintlayout.widget.ConstraintLayout
        android:layout_width="match_parent"
        android:layout_height="match_parent"
+       android:background="?attr/colorSurface"
        tools:context=".view.fragment.ArchiveFragment">
-
 
        <androidx.constraintlayout.widget.ConstraintLayout
            android:id="@+id/archiveTabConstraintLayout"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:background="@drawable/topbar_background"
-           android:orientation="horizontal"
            app:layout_constraintEnd_toEndOf="parent"
            app:layout_constraintStart_toStartOf="parent"
            app:layout_constraintTop_toTopOf="parent">
 
-
            <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_centerInParent="true"
-               android:layout_marginStart="20dp"
-               android:layout_marginTop="12dp"
-               android:layout_marginBottom="8dp"
+               android:id="@+id/archiveTopBarText"
+               style="@style/TopBarTextStyle1"
+               android:layout_marginStart="@dimen/large_horizontal_spacing"
+               android:layout_marginTop="@dimen/medium_vertical_spacing"
                android:text="@string/archive_title"
-               android:textColor="@color/black"
-               android:textSize="22sp"
-               android:textStyle="bold"
-               app:layout_constraintBottom_toBottomOf="parent"
                app:layout_constraintStart_toStartOf="parent"
                app:layout_constraintTop_toTopOf="parent" />
 
            <ImageView
-               android:foreground="?android:attr/selectableItemBackground"
                android:id="@+id/archiveSearchButton"
-               android:layout_width="40dp"
-               android:layout_height="40dp"
-               android:layout_marginTop="10dp"
-               android:layout_marginEnd="20dp"
-               android:layout_marginBottom="6dp"
-               android:background="@drawable/square_blue_button_background"
-               android:padding="9dp"
+               style="@style/tinyButtonStyle"
                android:src="@drawable/base_search"
+               android:layout_marginEnd="@dimen/large_horizontal_spacing"
                app:layout_constraintBottom_toBottomOf="parent"
                app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintTop_toTopOf="parent">
-
-           </ImageView>
-
-
+               app:layout_constraintTop_toTopOf="parent"
+                />
 
            <ImageView
-               android:foreground="?android:attr/selectableItemBackground"
                android:id="@+id/archiveSortButton"
-               android:layout_width="40dp"
-               android:layout_height="40dp"
-               android:layout_marginTop="10dp"
-               android:layout_marginEnd="10dp"
-               android:layout_marginBottom="6dp"
-               android:background="@drawable/square_blue_button_background"
-               android:padding="9dp"
-               android:src="@drawable/base_sort"
+               style="@style/tinyButtonStyle"
+               android:layout_marginEnd="@dimen/small_horizontal_spacing"
                app:layout_constraintBottom_toBottomOf="parent"
-               app:layout_constraintEnd_toStartOf="@+id/archiveSearchButton"
-               app:layout_constraintTop_toTopOf="parent">
+               app:layout_constraintTop_toTopOf="parent"
+               android:src="@drawable/base_sort"
+               app:layout_constraintEnd_toStartOf="@id/archiveSearchButton" />
 
-           </ImageView>
+           <View
+               android:id="@+id/archiveDivider"
+               style="@style/BottomSheetDividerStyle"
+               android:layout_marginTop="@dimen/tiny_vertical_spacing"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@id/archiveSearchButton" />
 
        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-       <View
-           android:id="@+id/archiveDivider"
-           android:layout_width="match_parent"
-           android:layout_height="1dp"
-           android:layout_marginTop="58dp"
-           android:background="?android:attr/listDivider"
-           app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintTop_toTopOf="parent" />
 
        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
            android:id="@+id/archiveSwipeRefresh"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            app:layout_constraintEnd_toEndOf="parent"
-
            app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintTop_toBottomOf="@+id/archiveTabConstraintLayout">
+           app:layout_constraintTop_toBottomOf="@id/archiveTabConstraintLayout">
 
            <androidx.constraintlayout.widget.ConstraintLayout
                android:layout_width="match_parent"
                android:layout_height="wrap_content">
 
-
                <com.google.android.gms.ads.AdView
                    android:id="@+id/archiveAdView"
-                   android:layout_width="wrap_content"
+                   android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:layout_alignParentBottom="true"
-                   android:layout_centerHorizontal="true"
-                   android:layout_marginTop="3dp"
-                   app:adSize="BANNER"
-                   app:adUnitId="ca-app-pub-3940256099942544/6300978111"
-                   app:layout_constraintEnd_toEndOf="@+id/archiveRecyclerView"
-                   app:layout_constraintStart_toStartOf="@+id/archiveRecyclerView"
-                   app:layout_constraintTop_toTopOf="parent">
-
-               </com.google.android.gms.ads.AdView>
+                   android:layout_marginStart="@dimen/large_horizontal_spacing"
+                   android:layout_marginEnd="@dimen/large_horizontal_spacing"
+                   app:adSize="@string/banner_size"
+                   app:adUnitId="@string/archive_banner_unit_id"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toTopOf="parent" />
 
                <androidx.appcompat.widget.SearchView
                    android:id="@+id/archiveSearchView"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:layout_marginVertical="8dp"
-                   android:layout_marginStart="20dp"
-                   android:layout_marginEnd="20dp"
-                   android:background="@drawable/search_view_background"
-                   android:backgroundTint="@color/dark_blue"
-                   android:closeIcon="@drawable/base_searchview_close"
-                   android:searchHintIcon="@drawable/base_searchview_search"
-                   android:searchIcon="@drawable/base_searchview_search"
-                   android:theme="@style/ThemeOverlay.SearchView"
+                   android:theme="@style/CustomSearchView"
+                   style="@style/SearchViewStyle"
                    app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintHorizontal_bias="0.0"
                    app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/archiveAdView"
-                   app:queryHint="@string/search_from_notes">
-
-               </androidx.appcompat.widget.SearchView>
-
+                   app:layout_constraintTop_toBottomOf="@id/archiveAdView"
+                   app:queryHint="@string/search_from_notes"/>
 
                <TextView
                    android:id="@+id/archiveText"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:layout_centerInParent="true"
-                   android:layout_marginStart="25dp"
-                   android:layout_marginTop="10dp"
+                   android:layout_marginStart="@dimen/large_horizontal_spacing"
+                   android:layout_marginTop="@dimen/tiny_vertical_spacing"
                    android:text="@string/trash_text"
-                   android:textColor="@color/dark_blue"
-                   android:textSize="25sp"
+                   android:textColor="@color/green"
+                   android:textSize="@dimen/huge_text_size"
                    app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/archiveSearchView">
-
-               </TextView>
-
+                   app:layout_constraintTop_toBottomOf="@id/archiveSearchView"/>
 
                <TextView
                    android:id="@+id/archiveNoteErrorMessage"
-                   android:layout_width="294dp"
-                   android:layout_height="60dp"
-                   android:layout_centerInParent="true"
-                   android:layout_marginTop="210dp"
-                   android:gravity="center"
-                   android:text="@string/connect_error_message"
-                   android:textColor="@color/gray"
-                   android:textSize="15sp"
+                   style="@style/NoteErrorMessageStyle"
+                   app:layout_constraintBottom_toBottomOf="parent"
                    app:layout_constraintEnd_toEndOf="parent"
                    app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/archiveText" />
+                   app:layout_constraintTop_toBottomOf="@id/archiveText" />
 
                <androidx.constraintlayout.widget.ConstraintLayout
                    android:id="@+id/archiveNoteNullMessage"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_centerInParent="true"
-                   android:layout_marginStart="20dp"
-                   android:layout_marginTop="125dp"
-                   android:layout_marginEnd="20dp"
+                   style="@style/NoteNullMessageStyle"
+                   app:layout_constraintBottom_toBottomOf="parent"
                    app:layout_constraintEnd_toEndOf="parent"
                    app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/archiveText">
+                   app:layout_constraintTop_toBottomOf="@id/archiveText"
+                   app:layout_constraintVertical_bias="0.35000002">
 
                    <TextView
                        android:id="@+id/archiveEmptyText"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:gravity="center"
+                       style="@style/EmptyTextStyle"
                        android:text="@string/archive_empty"
-                       android:textColor="@color/green"
-                       android:textSize="17sp"
                        app:layout_constraintEnd_toEndOf="parent"
                        app:layout_constraintStart_toStartOf="parent"
-                       app:layout_constraintTop_toBottomOf="@+id/archiveEmptyIcon" />
+                       app:layout_constraintTop_toBottomOf="@id/archiveEmptyIcon" />
 
                    <ImageView
-
                        android:id="@+id/archiveEmptyIcon"
-                       android:layout_width="150dp"
-                       android:layout_height="200dp"
-                       android:layout_below="@+id/archiveEmptyText"
-                       android:layout_alignParentStart="true"
-                       android:layout_marginTop="16dp"
-                       android:gravity="center"
+                       style="@style/EmptyIconStyle"
                        android:src="@drawable/base_null_archive"
                        app:layout_constraintEnd_toEndOf="parent"
                        app:layout_constraintStart_toStartOf="parent"
@@ -206,45 +136,20 @@
 
                </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-               <TextView
-                   android:id="@+id/archiveErrorText"
-                   android:layout_width="294dp"
-                   android:layout_height="60dp"
-                   android:layout_centerInParent="true"
-                   android:layout_marginStart="20dp"
-                   android:layout_marginTop="250dp"
-                   android:layout_marginEnd="20dp"
-                   android:gravity="center"
-                   android:text="@string/connect_error_message"
-                   android:textColor="@color/gray"
-                   android:textSize="15dp"
-                   android:visibility="gone"
-                   app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/archiveText"></TextView>
-
                <androidx.recyclerview.widget.RecyclerView
                    android:id="@+id/archiveRecyclerView"
-                   android:layout_width="0dp"
-                   android:layout_height="0dp"
-                   android:layout_marginStart="20dp"
-                   android:layout_marginEnd="20dp"
-                   android:layout_marginBottom="110dp"
+                   style="@style/NoteRecyclerViewStyle"
+                   android:layout_marginTop="@dimen/tiny_vertical_spacing"
                    app:layout_constraintBottom_toBottomOf="parent"
                    app:layout_constraintEnd_toEndOf="parent"
                    app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/archiveText">
-
-               </androidx.recyclerview.widget.RecyclerView>
+                   app:layout_constraintTop_toBottomOf="@id/archiveText" />
 
            </androidx.constraintlayout.widget.ConstraintLayout>
 
        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-
    </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </layout>
 

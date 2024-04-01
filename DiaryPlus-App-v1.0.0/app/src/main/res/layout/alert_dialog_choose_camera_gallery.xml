@@ -2,125 +2,116 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="?attr/colorSurface">
 
     <TextView
-        android:id="@+id/choose_title_text"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
+        android:id="@+id/chooseTitleText"
+        android:layout_width="@dimen/medium_button_size"
+        android:layout_height="@dimen/small_button_size"
+        android:layout_marginStart="@dimen/small_horizontal_spacing"
+        android:layout_marginTop="@dimen/small_vertical_spacing"
         android:gravity="center"
         android:text="@string/choose_title_text"
-        android:textAlignment="center"
-        android:textColor="@color/choose_title_text_color"
-        android:textSize="20sp"
+        android:textColor="?android:attr/textColor"
+        android:textSize="@dimen/large_text_size"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"/>
 
-    </TextView>
-
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/chooseCameraButton"
         android:foreground="?android:attr/selectableItemBackground"
-        android:id="@+id/choose_camera_button"
-        android:layout_width="150dp"
-        android:layout_height="175dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_horizontal_spacing"
+        android:layout_marginTop="@dimen/small_vertical_spacing"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/choose_title_text">
+        app:layout_constraintTop_toBottomOf="@id/chooseTitleText">
 
         <ImageView
-            android:id="@+id/choose_camera_view"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="0dp"
-            android:src="@drawable/choose_camera">
-
-        </ImageView>
+            android:id="@+id/chooseCameraIcon"
+            android:layout_width="@dimen/extra_large_image_size"
+            android:layout_height="@dimen/extra_large_image_size"
+            android:layout_marginStart="@dimen/extra_huge_horizontal_spacing"
+            android:layout_marginTop="@dimen/large_vertical_spacing"
+            android:layout_marginEnd="@dimen/extra_huge_horizontal_spacing"
+            android:src="@drawable/choose_camera"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/choose_camera_text"
+            android:id="@+id/chooseCameraText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/choose_camera_view"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginStart="@dimen/large_horizontal_spacing"
+            android:layout_marginEnd="@dimen/large_horizontal_spacing"
+            android:layout_marginBottom="@dimen/extra_huge_vertical_spacing"
             android:text="@string/choose_camera_text"
             android:textAlignment="center"
-            android:textColor="@color/note_choose_alert_icon_and_text_color"
-            android:textSize="15sp">
-        </TextView>
+            android:textColor="?attr/colorSecondary"
+            android:textSize="@dimen/medium_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chooseCameraIcon" />
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/chooseGalleryButton"
         android:foreground="?android:attr/selectableItemBackground"
-        android:id="@+id/choose_gallery_button"
-        android:layout_width="150dp"
-        android:layout_height="175dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/small_horizontal_spacing"
+        android:layout_marginTop="@dimen/small_vertical_spacing"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/choose_title_text">
+        app:layout_constraintTop_toBottomOf="@id/chooseTitleText">
 
         <ImageView
-            android:id="@+id/choose_gallery_view"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="0dp"
-            android:src="@drawable/choose_gallery"></ImageView>
+            android:id="@+id/chooseGalleryIcon"
+            android:layout_width="@dimen/extra_large_image_size"
+            android:layout_height="@dimen/extra_large_image_size"
+            android:layout_marginStart="@dimen/extra_huge_horizontal_spacing"
+            android:layout_marginTop="@dimen/large_vertical_spacing"
+            android:layout_marginEnd="@dimen/extra_huge_horizontal_spacing"
+            android:src="@drawable/choose_gallery"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/choose_gallery_text"
+            android:id="@+id/chooseGalleryText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/choose_gallery_view"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="@dimen/large_horizontal_spacing"
+            android:layout_marginEnd="@dimen/large_horizontal_spacing"
+            android:layout_marginBottom="@dimen/extra_huge_vertical_spacing"
             android:text="@string/choose_gallery_text"
             android:textAlignment="center"
-            android:textColor="@color/note_choose_alert_icon_and_text_color"
-            android:textSize="15sp">
+            android:textColor="?attr/colorSecondary"
+            android:textSize="@dimen/medium_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chooseGalleryIcon" />
 
-        </TextView>
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
+        android:id="@+id/chooseCancelButton"
         android:foreground="?android:attr/selectableItemBackground"
-        android:id="@+id/choose_cancel_button"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="-5dp"
+        android:layout_width="@dimen/medium_button_size"
+        android:layout_height="@dimen/small_button_size"
         android:gravity="center"
         android:text="@string/choose_cancel_text"
         android:textAlignment="center"
-        android:textColor="@color/choose_cancel_button_color"
-        android:textSize="17sp"
+        android:textColor="?android:attr/textColor"
+        android:textSize="@dimen/medium_text_size"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/choose_gallery_button">
-
-    </TextView>
+        app:layout_constraintTop_toBottomOf="@id/chooseGalleryButton"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

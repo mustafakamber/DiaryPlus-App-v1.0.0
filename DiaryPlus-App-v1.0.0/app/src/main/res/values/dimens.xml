@@ -1,3 +1,70 @@
 <resources>
-    <dimen name="text_margin">16dp</dimen>
+    <!-- TextSize -->
+    <dimen name="small_text_size">14sp</dimen>
+    <dimen name="medium_text_size">16sp</dimen>
+    <dimen name="large_text_size">20sp</dimen>
+    <dimen name="huge_text_size">24sp</dimen>
+    <!-- VerticalSpacing -->
+    <dimen name="special_vertical_spacing">18dp</dimen>
+    <dimen name="extra_tiny_vertical_spacing">4dp</dimen>
+    <dimen name="tiny_vertical_spacing">8dp</dimen>
+    <dimen name="small_vertical_spacing">12dp</dimen>
+    <dimen name="medium_vertical_spacing">16dp</dimen>
+    <dimen name="large_vertical_spacing">24dp</dimen>
+    <dimen name="huge_vertical_spacing">32dp</dimen>
+    <dimen name="extra_huge_vertical_spacing">40dp</dimen>
+    <!-- HorizontalSpacing -->
+    <dimen name="none_horizontal_spacing">0dp</dimen>
+    <dimen name="extra_tiny_horizontal_spacing">4dp</dimen>
+    <dimen name="tiny_horizontal_spacing">8dp</dimen>
+    <dimen name="small_horizontal_spacing">16dp</dimen>
+    <dimen name="medium_horizontal_spacing">20dp</dimen>
+    <dimen name="large_horizontal_spacing">24dp</dimen>
+    <dimen name="huge_horizontal_spacing">28dp</dimen>
+    <dimen name="extra_huge_horizontal_spacing">32dp</dimen>
+    <!-- ImageSize -->
+    <dimen name="tiny_image_size">20dp</dimen>
+    <dimen name="small_image_size">24dp</dimen>
+    <dimen name="medium_image_size">32dp</dimen>
+    <dimen name="large_image_size">40dp</dimen>
+    <dimen name="extra_large_image_size">72dp</dimen>
+    <dimen name="huge_image_size">108dp</dimen>
+    <dimen name="extra_huge_image_size">216dp</dimen>
+    <!-- ButtonSize -->
+    <dimen name="tiny_button_size">30dp</dimen>
+    <dimen name="small_button_size">44dp</dimen>
+    <dimen name="normal_button_size">64dp</dimen>
+    <dimen name="medium_button_size">96dp</dimen>
+    <dimen name="large_button_size">144dp</dimen>
+    <dimen name="huge_button_size">236dp</dimen>
+    <!-- RadiusSize -->
+    <dimen name="extra_tiny_radius_size">12dp</dimen>
+    <dimen name="tiny_radius_size">16dp</dimen>
+    <dimen name="small_radius_size">20dp</dimen>
+    <dimen name="medium_radius_size">24dp</dimen>
+    <dimen name="large_radius_size">32dp</dimen>
+    <dimen name="huge_radius_size">48dp</dimen>
+    <!-- PaddingSize -->
+    <dimen name="tiny_padding_size">4dp</dimen>
+    <dimen name="small_padding_size">8dp</dimen>
+    <dimen name="medium_padding_size">12dp</dimen>
+    <dimen name="large_padding_size">16dp</dimen>
+    <dimen name="huge_padding_size">20dp</dimen>
+    <!-- StrokeSize -->
+    <dimen name="small_stroke_size">1dp</dimen>
+    <dimen name="medium_stroke_size">2dp</dimen>
+    <!-- DividerSize -->
+    <dimen name="small_divider_size">1dp</dimen>
+    <!-- Custom BackgroundSize -->
+    <dimen name="medium_layout_size">56dp</dimen>
+    <dimen name="recycler_vertical_space_size">110dp</dimen>
+    <!-- MatchConstraintSize -->
+    <dimen name="match_constraint_size">0dp</dimen>
+    <!-- AuthBackGround -->
+    <dimen name="start">0dp</dimen>
+    <dimen name="end">350dp</dimen>
+    <!-- DiarySpecialHeightSize -->
+    <dimen name="diary_recycler_layout_size">48dp</dimen>
+    <dimen name="diary_calendar_layout_size">212dp</dimen>
+    <dimen name="photo_row_divider_size">140dp</dimen>
 </resources>

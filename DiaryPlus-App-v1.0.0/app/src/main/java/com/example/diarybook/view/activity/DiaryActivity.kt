@@ -27,16 +27,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.diarybook.adapter.DiaryPhotoAdapter
 import com.example.diarybook.databinding.ActivityDiaryBinding
 import com.example.diarybook.util.*
-import com.example.diarybook.util.Constant.BACKGROUND_DATA
-import com.example.diarybook.util.Constant.CAMERA_PHOTO
-import com.example.diarybook.util.Constant.DIARY_AD_ID
-import com.example.diarybook.util.Constant.FOLDER_PHOTO_CONTROL
-import com.example.diarybook.util.Constant.LANGUAGE_DATA
-import com.example.diarybook.util.Constant.SELECTED_CALENDAR_DATE_EN
-import com.example.diarybook.util.Constant.SELECTED_CALENDAR_DATE_TR
-import com.example.diarybook.util.Constant.blackHexCode
-import com.example.diarybook.util.Constant.languageCodeTr
-import com.example.diarybook.util.Constant.whiteHexCode
+import com.example.diarybook.constant.Constant.BACKGROUND_DATA
+import com.example.diarybook.constant.Constant.CAMERA_PHOTO
+import com.example.diarybook.constant.Constant.DIARY_AD_ID
+import com.example.diarybook.constant.Constant.FOLDER_PHOTO_CONTROL
+import com.example.diarybook.constant.Constant.LANGUAGE_DATA
+import com.example.diarybook.constant.Constant.SELECTED_CALENDAR_DATE_EN
+import com.example.diarybook.constant.Constant.SELECTED_CALENDAR_DATE_TR
+import com.example.diarybook.constant.Constant.blackHexCode
+import com.example.diarybook.constant.Constant.languageCodeTr
+import com.example.diarybook.constant.Constant.whiteHexCode
 import com.example.diarybook.view.dialog.ChooseDialog
 import com.example.diarybook.view.dialog.ConfirmationDialog
 import com.example.diarybook.view.sheet.ColorsSheet
@@ -242,7 +242,6 @@ class DiaryActivity : AppCompatActivity() {
                 selectedBackgroundColor = whiteHexCode
                 selectedTextColor = blackHexCode
 
-                noteTabConstraintLayout.setBackgroundColor(Color.parseColor(selectedBackgroundColor))
                 noteActivityConstraintLayout.setBackgroundColor(
                     Color.parseColor(selectedBackgroundColor)
                 )
@@ -299,7 +298,6 @@ class DiaryActivity : AppCompatActivity() {
                 selectedBackgroundColor = diary.diaryBackgroundColor!!
                 selectedTextColor = diary.diaryTextColor!!
 
-                noteTabConstraintLayout.setBackgroundColor(Color.parseColor(selectedBackgroundColor))
                 noteActivityConstraintLayout.setBackgroundColor(
                     Color.parseColor(
                         selectedBackgroundColor
@@ -356,7 +354,6 @@ class DiaryActivity : AppCompatActivity() {
 
         selectedBackgroundColor = newColor
         noteActivityConstraintLayout.setBackgroundColor(Color.parseColor(selectedBackgroundColor))
-        noteTabConstraintLayout.setBackgroundColor(Color.parseColor(selectedBackgroundColor))
     }
 
     private fun changeTextColor(newColor: String) = with(diaryActivityBinding) {

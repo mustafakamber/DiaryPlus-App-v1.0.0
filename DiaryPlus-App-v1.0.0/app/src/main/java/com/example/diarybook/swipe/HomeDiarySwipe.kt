@@ -11,8 +11,8 @@ import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 abstract class HomeDiarySwipe(context: Context) :
     ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
 
-    val deleteColor = ContextCompat.getColor(context, R.color.dark_blue)
-    val archiveColor = ContextCompat.getColor(context, R.color.gray)
+    val deleteColor = ContextCompat.getColor(context, R.color.red)
+    val archiveColor = ContextCompat.getColor(context, R.color.orange)
     val deleteIcon = R.drawable.swipe_delete
     val archiveIcon = R.drawable.swipe_archive
 
