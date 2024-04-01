@@ -42,7 +42,8 @@
     - RxJava    
 
 - API
-    -Retrofit
+    - [JSON File](https://github.com/mustafakamber/CalendarImageData-JSON)
+    - Retrofit
 
 - Image Handling
     - [Glide](https://github.com/bumptech/glide)
