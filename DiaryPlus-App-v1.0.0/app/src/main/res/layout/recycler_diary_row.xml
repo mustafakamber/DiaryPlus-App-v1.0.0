@@ -12,7 +12,6 @@
             name="diaryListener"
             type="com.example.diarybook.adapter.DiaryClickListener" />
     </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:layout_width="match_parent"
@@ -106,15 +105,26 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
 
+                <ImageView
+                    android:id="@+id/notePhotoPieceImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/photopiece"
+                    android:setImageColor="@{diaryRow.diaryTextColor}"
+                    android:imagePhotoPiece="@{diaryRow.diaryPhoto}"
+                    app:layout_constraintBottom_toBottomOf="@id/notePhotoPiece"
+                    app:layout_constraintEnd_toStartOf="@id/notePhotoPiece"
+                    app:layout_constraintTop_toTopOf="@id/notePhotoPiece" />
+
                 <TextView
                     android:id="@+id/notePhotoPiece"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/small_horizontal_spacing"
                     android:layout_marginBottom="@dimen/tiny_vertical_spacing"
-                    android:drawableLeft="@drawable/photopiece"
                     android:textPhotoPiece="@{diaryRow.diaryPhoto}"
                     android:textAlignment="center"
+                    tools:text="@string/default_photo_size"
                     android:setTextColor="@{diaryRow.diaryTextColor}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />

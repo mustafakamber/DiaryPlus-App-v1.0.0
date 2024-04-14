@@ -8,7 +8,6 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 class CalendarService {
-
     private val api = Retrofit.Builder()
         .baseUrl(baseUrl)
         .addConverterFactory(GsonConverterFactory.create())
@@ -19,5 +18,4 @@ class CalendarService {
     fun getCalendarData() : Single<List<Calendar>>{
         return  api.getCalendar()
     }
-
 }

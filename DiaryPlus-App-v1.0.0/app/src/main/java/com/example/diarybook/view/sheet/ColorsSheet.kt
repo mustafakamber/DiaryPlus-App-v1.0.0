@@ -38,7 +38,7 @@ class ColorsSheet
 
 
         var colors: Array<String> = arrayOf(
-            "#FFFFFFFF", "#FF000000", "#757580",
+            "#FFFFFFFF", "#FF000000", "#153f69","#757580",
             "#BF40BF", "#FFBB86FC", "#1DA1F2",
             "#F5820D", "#A90432",
             "#ffed00", "#00D683",

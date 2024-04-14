@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.diarybook.R
-import com.example.diarybook.databinding.RecyclerFullPhotoRowBinding
 import com.example.diarybook.constant.Constant.FULL_PHOTO_DATA
+import com.example.diarybook.databinding.RecyclerFullPhotoRowBinding
 import com.example.diarybook.util.downloadImageFromUrl
 import com.example.diarybook.util.placeHolderProgressBar
 import com.example.diarybook.view.fragment.PhotoFragment
@@ -44,7 +44,6 @@ class FullPhotoAdapter(val myPhotos: MutableList<Uri>,
             placeHolderProgressBar(holder.itemView.context)
         )
         myPhotoImage.setOnClickListener {
-
 
             val data = myPhotos[position]
             val bundle = Bundle()

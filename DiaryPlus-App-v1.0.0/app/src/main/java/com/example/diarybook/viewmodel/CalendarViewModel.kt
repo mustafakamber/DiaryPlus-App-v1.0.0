@@ -1,6 +1,7 @@
 package com.example.diarybook.viewmodel
 
 import android.app.Application
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.diarybook.model.Diary
 import com.example.diarybook.service.DatabaseService.GetService
@@ -11,28 +12,31 @@ import kotlinx.coroutines.withContext
 
 class CalendarViewModel(application: Application) : CoroutineViewModel(application) {
 
-    val calendarDiaryView = MutableLiveData<List<Diary>?>()
-    val calendarNotesErrorMessage = MutableLiveData<Boolean>()
-    val calendarNoteNullMessage = MutableLiveData<Boolean>()
-    val calendarToastMessage = MutableLiveData<String?>()
+    private val _diaryView = MutableLiveData<List<Diary>?>()
+    val diaryView : LiveData<List<Diary>?>
+        get() = _diaryView
+    private val _errorMessage = MutableLiveData<Boolean>()
+    val errorMessage : LiveData<Boolean>
+        get() = _errorMessage
+    private val _nullMessage = MutableLiveData<Boolean>()
+    val nullMessage : LiveData<Boolean>
+        get() = _nullMessage
+    private val _toastMessage = MutableLiveData<String?>()
+    val toastMessage : LiveData<String?>
+        get() = _toastMessage
 
     private val getService = GetService()
     private val sharedPreferences = SharedPreferences(getApplication())
-
-
-    fun saveStringData(key: String, value: String) {
-        sharedPreferences.saveStringData(key, value)
-    }
 
     fun saveBooleanData(key: String, value: Boolean) {
         sharedPreferences.saveBooleanData(key, value)
     }
 
     fun refreshCalendarFragment(noteDate : String){
-        calendarDiaryView.value = null
-        calendarToastMessage.value = null
-        calendarNoteNullMessage.value = false
-        calendarNotesErrorMessage.value = false
+        _diaryView.value = null
+        _toastMessage.value = null
+        _nullMessage.value = false
+        _errorMessage.value = false
         getDiariesForSelectedDate(noteDate)
     }
 
@@ -46,20 +50,17 @@ class CalendarViewModel(application: Application) : CoroutineViewModel(applicati
                 if (result.isSuccess) {
                     val notes = result.getOrNull()
                     if (notes.isNullOrEmpty()) {
-                        calendarNoteNullMessage.value = true
+                        _nullMessage.value = true
                     } else {
-                        calendarDiaryView.value = notes
+                        _diaryView.value = notes
                     }
                 }
-
             } catch (error: Exception) {
-                calendarNotesErrorMessage.value = true
+                _errorMessage.value = true
                 withContext(Dispatchers.Main) {
-                    calendarToastMessage.value = error.localizedMessage
+                    _toastMessage.value = error.localizedMessage
                 }
             }
         }
     }
-
-
 }

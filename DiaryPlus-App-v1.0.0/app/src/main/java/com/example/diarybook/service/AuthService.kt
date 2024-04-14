@@ -1,6 +1,11 @@
 package com.example.diarybook.service
 
 
+import com.example.diarybook.constant.Constant.NULL_STRING
+import com.example.diarybook.constant.Constant.USERS_EMAIL_FIELD
+import com.example.diarybook.constant.Constant.USERS_FILE_NAME
+import com.example.diarybook.constant.Constant.USERS_IMAGE_FIELD
+import com.example.diarybook.constant.Constant.USERS_NAME_FIELD
 import com.example.diarybook.model.User
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseAuth
@@ -36,8 +41,8 @@ class AuthService {
         return suspendCoroutine { continuation ->
 
             if (currentUser != null){
-                val userRef = database.collection("Users")
-                    .whereEqualTo("email",currentUser!!.email)
+                val userRef = database.collection(USERS_FILE_NAME)
+                    .whereEqualTo(USERS_EMAIL_FIELD,currentUser!!.email)
 
                 userRef.get()
                     .addOnSuccessListener { documents ->
@@ -72,16 +77,16 @@ class AuthService {
             val userUid = currentUser?.uid
 
             if (userUid != null){
-                val userDocRef = database.collection("Users")
+                val userDocRef = database.collection(USERS_FILE_NAME)
                     .document(userUid)
 
                 userDocRef.get()
                     .addOnSuccessListener { documentSnapshot ->
                         val userMap = documentSnapshot.data
 
-                        val email = userMap?.get("email").toString()
-                        val name = userMap?.get("name") as? String ?: ""
-                        val image = userMap?.get("image") as? String ?: ""
+                        val email = userMap?.get(USERS_EMAIL_FIELD).toString()
+                        val name = userMap?.get(USERS_NAME_FIELD) as? String ?: NULL_STRING
+                        val image = userMap?.get(USERS_IMAGE_FIELD) as? String ?: NULL_STRING
 
 
                         val user = User(email,name,image)
@@ -105,15 +110,15 @@ class AuthService {
 
             if(userUid != null){
 
-                val userDocRef = database.collection("Users").document(userUid)
+                val userDocRef = database.collection(USERS_FILE_NAME).document(userUid)
 
                 val userMap = hashMapOf<String,Any>()
-                userMap["email"] = user.userEmail
+                userMap[USERS_EMAIL_FIELD] = user.userEmail
                 user.userName.let {
-                    userMap["name"] = user.userName.toString()
+                    userMap[USERS_NAME_FIELD] = user.userName.toString()
                 }
                 user.userImage.let {
-                    userMap["image"] = user.userImage.toString()
+                    userMap[USERS_IMAGE_FIELD] = user.userImage.toString()
                 }
 
                 userDocRef.set(userMap)
@@ -131,8 +136,8 @@ class AuthService {
     suspend fun checkEmailToSend(email: String,onSendNotCompelete : () -> Unit): Result<Unit> {
         return suspendCoroutine { continuation ->
             if (email != null) {
-                val userDocRef = database.collection("Users")
-                    .whereEqualTo("email", email)
+                val userDocRef = database.collection(USERS_FILE_NAME)
+                    .whereEqualTo(USERS_EMAIL_FIELD, email)
 
                 userDocRef.get()
                     .addOnSuccessListener { documents ->

@@ -13,12 +13,11 @@ open class UserViewModel (application: Application) : CoroutineViewModel(applica
     private val authService = AuthService()
     val userToastMessage = MutableLiveData<String>()
 
-    fun currentUser(onSuccess: () -> Unit,onCancel : () -> Unit){
-        authService.currentUserController(onSuccess,onCancel)
+    fun currentUser(onSuccess: () -> Unit, onCancel: () -> Unit) {
+        authService.currentUserController(onSuccess, onCancel)
     }
 
     fun addNewUserOrUpdateToDB(user: User, onSuccess: () -> Unit) {
-
         launch {
             try {
                 withContext(Dispatchers.IO) {

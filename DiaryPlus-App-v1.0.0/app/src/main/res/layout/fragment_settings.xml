@@ -96,28 +96,9 @@
                 <LinearLayout style="@style/SettingsButtonLinearStyle">
 
                     <RelativeLayout
-                        android:id="@+id/accountSettings"
-                        style="@style/SettingsButtonRelativeStyle"
-                        android:layout_marginTop="@dimen/tiny_vertical_spacing">
-
-                        <ImageView
-                            android:id="@+id/accountIcon"
-                            style="@style/SettingsButtonImageStyle"
-                            android:src="@drawable/base_settings_account" />
-
-                        <TextView
-                            style="@style/SettingsButtonTextStyle"
-                            android:layout_toEndOf="@id/accountIcon"
-                            android:text="@string/account" />
-
-                        <ImageView style="@style/SettingsButtonForwardStyle" />
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
                         android:id="@+id/notificationSettings"
                         style="@style/SettingsButtonRelativeStyle"
-                        android:layout_marginTop="@dimen/small_vertical_spacing">
+                        android:layout_marginTop="@dimen/tiny_vertical_spacing">
 
                         <ImageView
                             android:id="@+id/notifications"
@@ -169,7 +150,7 @@
                             android:text="@string/mode" />
 
                         <Switch
-                            android:id="@+id/modeSwitch"
+                            android:id="@+id/themeSwitch"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:theme="@style/SelectionSwitch"
@@ -183,8 +164,27 @@
                 <LinearLayout style="@style/SettingsButtonLinearStyle">
 
                     <RelativeLayout
+                        android:id="@+id/accountSettings"
+                        style="@style/SettingsButtonRelativeStyle"
+                        android:layout_marginTop="@dimen/tiny_vertical_spacing">
+
+                        <ImageView
+                            android:id="@+id/accountIcon"
+                            style="@style/SettingsButtonImageStyle"
+                            android:src="@drawable/base_settings_account" />
+
+                        <TextView
+                            style="@style/SettingsButtonTextStyle"
+                            android:layout_toEndOf="@id/accountIcon"
+                            android:text="@string/account" />
+
+                        <ImageView style="@style/SettingsButtonForwardStyle" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:id="@+id/photoSettings"
-                        android:layout_marginTop="@dimen/tiny_vertical_spacing"
+                        android:layout_marginTop="@dimen/small_vertical_spacing"
                         style="@style/SettingsButtonRelativeStyle">
 
                         <ImageView

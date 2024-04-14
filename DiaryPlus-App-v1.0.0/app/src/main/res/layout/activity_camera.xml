@@ -37,6 +37,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cameraTexture" />
 
+        <ImageView
+            android:id="@+id/cameraReverseButton"
+            android:layout_width="@dimen/normal_button_size"
+            android:layout_height="@dimen/normal_button_size"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:padding="@dimen/large_padding_size"
+            android:layout_marginStart="@dimen/small_horizontal_spacing"
+            android:src="@drawable/camera_front"
+            app:layout_constraintBottom_toBottomOf="@id/cameraCaptureButton"
+            app:layout_constraintStart_toEndOf="@id/cameraCaptureButton"
+            app:layout_constraintTop_toTopOf="@id/cameraCaptureButton" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

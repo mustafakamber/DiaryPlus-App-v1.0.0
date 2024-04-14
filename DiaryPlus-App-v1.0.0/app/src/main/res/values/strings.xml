@@ -2,6 +2,7 @@
     <!-- Dont Transletable -->
     <string name="home_banner_unit_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
     <string name="archive_banner_unit_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="default_photo_size" translatable="false">5</string>
     <string name="banner_size" translatable="false">BANNER</string>
     <string name="app_name">Diary Plus</string>
     <string name="search_from_notes">Search in diaries..</string>
@@ -16,7 +17,7 @@
     <string name="backup">Backup to Cloud</string>
     <string name="backload">Restore from Cloud</string>
     <string name="clear">Clear the Cloud</string>
-    <string name="mode">Dark Mode</string>
+    <string name="mode">Dark Theme</string>
     <string name="database">Database</string>
     <string name="notifications">Reminder Notification</string>
     <string name="photo">My Photos</string>

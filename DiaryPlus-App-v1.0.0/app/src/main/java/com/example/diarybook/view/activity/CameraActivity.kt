@@ -1,12 +1,15 @@
 package com.example.diarybook.view.activity
 
+import android.Manifest
 import com.example.diarybook.viewmodel.CameraViewModel
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.content.pm.PackageManager
 import android.graphics.ImageFormat
 import android.graphics.SurfaceTexture
 import android.hardware.camera2.CameraCaptureSession
+import android.hardware.camera2.CameraCharacteristics
 import android.hardware.camera2.CameraDevice
 import android.hardware.camera2.CameraManager
 import android.hardware.camera2.CaptureRequest
@@ -19,19 +22,18 @@ import android.view.Surface
 import android.view.TextureView
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.diarybook.R
 import com.example.diarybook.databinding.ActivityCameraBinding
 import com.example.diarybook.constant.Constant.CAMERA_PHOTO
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class CameraActivity : AppCompatActivity() {
 
-    private lateinit var cameraActivityBinding: ActivityCameraBinding
-    private lateinit var cameraViewModel: CameraViewModel
+    private lateinit var binding: ActivityCameraBinding
+    private lateinit var viewModel: CameraViewModel
     lateinit var cameraDevice: CameraDevice
     lateinit var captureRequest: CaptureRequest.Builder
     lateinit var cameraCaptureSession: CameraCaptureSession
@@ -42,51 +44,81 @@ class CameraActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
-        cameraActivityBinding = ActivityCameraBinding.inflate(layoutInflater)
-        setContentView(cameraActivityBinding.root)
-        with(cameraActivityBinding){
+        binding = ActivityCameraBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-            cameraViewModel = ViewModelProvider(this@CameraActivity)[CameraViewModel::class.java]
+        viewModel = ViewModelProvider(this@CameraActivity)[CameraViewModel::class.java]
 
-            val captureButton = findViewById<ImageView>(R.id.cameraCaptureButton)
+        handlerInit()
+        setupCameraScreen()
+        observeLiveData()
 
-            handlerInit()
-            observeLiveData()
+    }
 
-            cameraTexture.surfaceTextureListener = object : TextureView.SurfaceTextureListener {
-                override fun onSurfaceTextureAvailable(p0: SurfaceTexture, p1: Int, p2: Int) {
-                    openCamera(cameraActivityBinding)
-                }
+    private fun setupCameraScreen() = with(binding){
 
-                override fun onSurfaceTextureSizeChanged(p0: SurfaceTexture, p1: Int, p2: Int) {
+        val captureButton = findViewById<ImageView>(R.id.cameraCaptureButton)
+        val switchButton = findViewById<ImageView>(R.id.cameraReverseButton)
 
-                }
+        cameraTexture.surfaceTextureListener = object : TextureView.SurfaceTextureListener {
+            override fun onSurfaceTextureAvailable(p0: SurfaceTexture, p1: Int, p2: Int) {
+                openCamera(binding)
+            }
 
-                override fun onSurfaceTextureDestroyed(p0: SurfaceTexture): Boolean {
-
-                    return false
-                }
-
-                override fun onSurfaceTextureUpdated(p0: SurfaceTexture) {
-
-                }
+            override fun onSurfaceTextureSizeChanged(p0: SurfaceTexture, p1: Int, p2: Int) {
 
             }
 
-            val callback = object : OnBackPressedCallback(true){
-                override fun handleOnBackPressed() {
-                    this@CameraActivity.finish()
+            override fun onSurfaceTextureDestroyed(p0: SurfaceTexture): Boolean {
+
+                return false
+            }
+
+            override fun onSurfaceTextureUpdated(p0: SurfaceTexture) {}
+
+        }
+
+        imageReaderInit(this@CameraActivity) { imageUri ->
+            closeCameraActivityWithUri(imageUri)
+        }
+
+        captureButton.setOnClickListener {
+            captureRequestOperations()
+        }
+
+        switchButton.setOnClickListener {
+            //switchCamera()
+        }
+    }
+
+    private fun switchCamera(){
+        cameraDevice.close()
+        val cameraIdList = cameraManager.cameraIdList
+        for (cameraId in cameraIdList) {
+            val characteristics = cameraManager.getCameraCharacteristics(cameraId)
+            val facing = characteristics.get(CameraCharacteristics.LENS_FACING)
+            if (facing == CameraCharacteristics.LENS_FACING_FRONT) {
+                if (ActivityCompat.checkSelfPermission(
+                        this,
+                        Manifest.permission.CAMERA
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
+                    return
                 }
-            }
+                cameraManager.openCamera(cameraId, object : CameraDevice.StateCallback() {
+                    override fun onOpened(camera: CameraDevice) {
+                        cameraOperation(camera, binding)
+                    }
 
-            this@CameraActivity.onBackPressedDispatcher.addCallback(callback)
+                    override fun onDisconnected(camera: CameraDevice) {
 
-            imageReaderInit(this@CameraActivity) { imageUri ->
-                closeCameraActivityWithUri(imageUri)
-            }
+                    }
 
-            captureButton.setOnClickListener {
-                captureRequestOperations()
+                    override fun onError(camera: CameraDevice, error: Int) {
+
+                    }
+                }, handler)
+                break
             }
         }
     }
@@ -103,7 +135,7 @@ class CameraActivity : AppCompatActivity() {
         imageReader.setOnImageAvailableListener({ reader ->
             val image = reader?.acquireLatestImage()
             if (image != null) {
-                cameraViewModel.saveImageToFile(activity, image, onImageUriReady)
+                viewModel.saveImageToFile(activity, image, onImageUriReady)
             }
         }, handler)
     }
@@ -135,9 +167,9 @@ class CameraActivity : AppCompatActivity() {
         handlerThread.quitSafely()
     }
 
-    private fun observeLiveData() = with(cameraActivityBinding){
+    private fun observeLiveData() = with(binding){
 
-        cameraViewModel.cameraToastMessage.observe(this@CameraActivity, Observer { toastMessage ->
+        viewModel.cameraToastMessage.observe(this@CameraActivity, Observer { toastMessage ->
             Toast.makeText(this@CameraActivity,toastMessage,Toast.LENGTH_SHORT).show()
         })
 
@@ -169,7 +201,7 @@ class CameraActivity : AppCompatActivity() {
     }
 
     private fun closeCameraActivityWithUri(imageUri: Uri) {
-        cameraViewModel.savePhotoData(CAMERA_PHOTO,imageUri.toString())
+        viewModel.savePhotoData(CAMERA_PHOTO,imageUri.toString())
         this@CameraActivity.finish()
     }
 }

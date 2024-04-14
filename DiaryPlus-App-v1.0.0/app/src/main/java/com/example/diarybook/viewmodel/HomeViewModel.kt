@@ -1,8 +1,10 @@
 package com.example.diarybook.viewmodel
 
 import android.app.Application
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.diarybook.R
+import com.example.diarybook.constant.Constant.NULL_STRING
 import com.example.diarybook.model.Calendar
 import com.example.diarybook.model.Diary
 import com.example.diarybook.service.AuthService
@@ -12,10 +14,8 @@ import com.example.diarybook.service.DatabaseService.GetService
 import com.example.diarybook.service.DatabaseService.MoveService
 import com.example.diarybook.util.SharedPreferences
 import com.example.diarybook.view.dialog.DatePickerDialog
-import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
@@ -24,15 +24,41 @@ import kotlinx.coroutines.withContext
 
 class HomeViewModel (application: Application) : CoroutineViewModel(application) {
 
-    val homeDiaryView = MutableLiveData<List<Diary>?>()
-    val homeCalendarView = MutableLiveData<List<Calendar>?>()
-    val homeErrorMessage = MutableLiveData<Boolean>()
-    val homeNullMessage = MutableLiveData<Boolean>()
-    val homeSearchView = MutableLiveData<Boolean>()
-    val homeUserName = MutableLiveData<String?>()
-    val homeToastMessage = MutableLiveData<String?>()
-    val homeSnackbarMessage = MutableLiveData<Int>()
-    val homeDateText = MutableLiveData<String?>()
+    private val _homeDiaryView = MutableLiveData<List<Diary>?>()
+    val homeDiaryView : LiveData<List<Diary>?>
+        get() = _homeDiaryView
+
+    private val _homeCalendarView = MutableLiveData<List<Calendar>?>()
+    val homeCalendarView : LiveData<List<Calendar>?>
+        get() = _homeCalendarView
+
+    private val _homeErrorMessage = MutableLiveData<Boolean>()
+    val homeErrorMessage : LiveData<Boolean>
+        get() = _homeErrorMessage
+
+    private val _homeNullMessage = MutableLiveData<Boolean>()
+    val homeNullMessage : LiveData<Boolean>
+        get() = _homeNullMessage
+
+    private val _homeSearchView = MutableLiveData<Boolean>()
+    val homeSearchView : LiveData<Boolean>
+        get() = _homeSearchView
+
+    private val _homeUserName = MutableLiveData<String?>()
+    val homeUserName : LiveData<String?>
+        get() = _homeUserName
+
+    private val _homeToastMessage = MutableLiveData<String?>()
+    val homeToastMessage : LiveData<String?>
+        get() = _homeToastMessage
+
+    private val _homeSnackbarMessage = MutableLiveData<Int>()
+    val homeSnackbarMessage : LiveData<Int>
+        get() = _homeSnackbarMessage
+
+    private val _homeDateText = MutableLiveData<String?>()
+    val homeDateText : LiveData<String?>
+        get() = _homeDateText
 
     private val calendarService = CalendarService()
     private val disposable = CompositeDisposable()
@@ -43,35 +69,34 @@ class HomeViewModel (application: Application) : CoroutineViewModel(application)
     private val deleteService = DeleteService()
 
     private val sharedPreferences = SharedPreferences(getApplication())
-    
+    private var isSearchViewVisible : Boolean = false
     val datePicker = DatePickerDialog(getApplication())
 
-
-    fun saveStringData(key: String, value: String) {
-        sharedPreferences.saveStringData(key, value)
+    fun updateSearchViewVisibilityState(){
+        _homeSearchView.value = !isSearchViewVisible
+        isSearchViewVisible = !isSearchViewVisible
     }
 
     fun saveBooleanData(key: String, value: Boolean) {
         sharedPreferences.saveBooleanData(key, value)
     }
 
-
     fun refreshHomeFragment() {
-        homeUserName.value = null
-        homeDateText.value = null
-        homeDiaryView.value = null
-        homeCalendarView.value = null
-        homeToastMessage.value = null
-        homeErrorMessage.value = false
-        homeNullMessage.value = false
-        homeSearchView.value = false
+        _homeUserName.value = null
+        _homeDateText.value = null
+        _homeDiaryView.value = null
+        _homeCalendarView.value = null
+        _homeToastMessage.value = null
+        _homeErrorMessage.value = false
+        _homeNullMessage.value = false
+        _homeSearchView.value = false
         getUserName()
         getDate()
         getCalendarImageFromAPI()
         getAllDiaries()
     }
 
-     fun getAllDiaries(){
+     private fun getAllDiaries(){
         launch {
             try {
                 withContext(Dispatchers.IO) {
@@ -81,83 +106,70 @@ class HomeViewModel (application: Application) : CoroutineViewModel(application)
                 if (result.isSuccess) {
                     val notes = result.getOrNull()
                     if (notes.isNullOrEmpty()) {
-                        homeNullMessage.value = true
+                        _homeNullMessage.value = true
                     } else {
-                        homeDiaryView.value = notes
+                        _homeDiaryView.value = notes
                     }
                 }
-
             } catch (error: Exception) {
-                homeErrorMessage.value = true
+                _homeErrorMessage.value = true
                 withContext(Dispatchers.Main) {
-                    homeToastMessage.value = error.localizedMessage
+                    _homeToastMessage.value = error.localizedMessage
                 }
             }
         }
     }
 
     private fun getDate(){
-
         val date = datePicker.currentDate()
-
-        homeDateText.value = date
+        _homeDateText.value = date
     }
 
+    private fun sortCalendarImage(photoList : List<Calendar>){
+        val month = datePicker.currentMonth()
+        val indexOfMonth = when (month) {
+            "January" -> 0
+            "February" -> 1
+            "March" -> 2
+            "April" -> 3
+            "May" -> 4
+            "June" -> 5
+            "July" -> 6
+            "August" -> 7
+            "September" -> 8
+            "October" -> 9
+            "November" -> 10
+            "December" -> 11
+            else -> -1
+        }
+        if (indexOfMonth != -1) {
+            val newList: MutableList<Calendar> = mutableListOf()
+            for (i in indexOfMonth until photoList.size) {
+                newList.add(photoList[i])
+            }
+            for (i in 0 until indexOfMonth) {
+                newList.add(photoList[i])
+            }
+            val newPhotoList = newList.toTypedArray()
+            val newPhotoArrayList = ArrayList<Calendar>(newPhotoList.asList())
+            _homeCalendarView.value = newPhotoArrayList
+        }
+    }
 
     private fun getCalendarImageFromAPI(){
-
         disposable.add(
             calendarService.getCalendarData()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<List<Calendar>>(){
-                    override fun onSuccess(calendarList: List<Calendar>) {
-
-                        val month = datePicker.currentMonth()
-
-                        val indexOfMonth = when (month) {
-                            "January" -> 0
-                            "February" -> 1
-                            "March" -> 2
-                            "April" -> 3
-                            "May" -> 4
-                            "June" -> 5
-                            "July" -> 6
-                            "August" -> 7
-                            "September" -> 8
-                            "October" -> 9
-                            "November" -> 10
-                            "December" -> 11
-                            else -> -1
-                        }
-
-                        if (indexOfMonth != -1) {
-
-                            val newList: MutableList<Calendar> = mutableListOf()
-                            for (i in indexOfMonth until calendarList.size) {
-                                newList.add(calendarList[i])
-                            }
-                            for (i in 0 until indexOfMonth) {
-                                newList.add(calendarList[i])
-                            }
-
-                            val newPhotoList = newList.toTypedArray()
-                            val newPhotoArrayList = ArrayList<Calendar>(newPhotoList.asList())
-
-                            homeCalendarView.value = newPhotoArrayList
-
-                        }
-
-
+                    override fun onSuccess(photoList: List<Calendar>) {
+                        sortCalendarImage(photoList)
                     }
-
                     override fun onError(e: Throwable) {
-                        homeToastMessage.value = e.localizedMessage
+                        _homeToastMessage.value = e.localizedMessage
                     }
-
                 })
         )
-
     }
 
     private fun getUserName(){
@@ -169,14 +181,13 @@ class HomeViewModel (application: Application) : CoroutineViewModel(application)
                 val result = authService.getUserInfo()
                 if (result.isSuccess){
                     val userName = result.getOrNull()
-
                     userName?.let {
-                        homeUserName.value = userName.userName!!.substringBefore(" ")
+                        _homeUserName.value = userName.userName!!.substringBefore(NULL_STRING)
                     }
                 }
             }catch (error : Exception){
                 withContext(Dispatchers.Main){
-                    homeToastMessage.value = error.localizedMessage
+                    _homeToastMessage.value = error.localizedMessage
                 }
             }
         }
@@ -188,11 +199,11 @@ class HomeViewModel (application: Application) : CoroutineViewModel(application)
                 withContext(Dispatchers.IO) {
                     deleteService.deleteSingleNoteFromFirebase(noteId)
                 }
-                homeSnackbarMessage.value = R.string.deleted
+                _homeSnackbarMessage.value = R.string.deleted
                 getAllDiaries()
             } catch (error: Exception) {
                 withContext(Dispatchers.Main) {
-                    homeToastMessage.value = error.localizedMessage
+                    _homeToastMessage.value = error.localizedMessage
                 }
             }
         }
@@ -204,11 +215,11 @@ class HomeViewModel (application: Application) : CoroutineViewModel(application)
                 withContext(Dispatchers.IO) {
                     moveService.moveSingleNoteToArchiveFirebase(noteId)
                 }
-                homeSnackbarMessage.value = R.string.archived
+                _homeSnackbarMessage.value = R.string.archived
                 getAllDiaries()
             } catch (error: Exception) {
                 withContext(Dispatchers.Main) {
-                    homeToastMessage.value = error.localizedMessage
+                    _homeToastMessage.value = error.localizedMessage
                 }
             }
         }
@@ -216,8 +227,6 @@ class HomeViewModel (application: Application) : CoroutineViewModel(application)
 
     override fun onCleared() {
         super.onCleared()
-
         disposable.clear()
     }
-
 }

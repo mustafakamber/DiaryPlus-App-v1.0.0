@@ -2,6 +2,7 @@ package com.example.diarybook.viewmodel
 
 import android.app.Application
 import android.net.Uri
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.diarybook.R
 import com.example.diarybook.util.SharedPreferences
@@ -17,7 +18,6 @@ import kotlinx.coroutines.withContext
 
 class SettingsViewModel (application: Application) : UserViewModel(application) {
 
-
     private val moveService = MoveService()
     private val cloudService = CloudService()
     private val deleteService = DeleteService()
@@ -26,9 +26,17 @@ class SettingsViewModel (application: Application) : UserViewModel(application) 
 
     private val sharedPreferences = SharedPreferences(getApplication())
 
-    val userData = MutableLiveData<User>()
-    val settingsSnackbarMessage = MutableLiveData<Int>()
-    val settingsToastMessage = MutableLiveData<String>()
+    private val _userData = MutableLiveData<User>()
+    val userData : LiveData<User>
+        get() = _userData
+
+    private val _settingsSnackbarMessage = MutableLiveData<Int>()
+    val settingsSnackbarMessage : LiveData<Int>
+        get() = _settingsSnackbarMessage
+
+    private val _settingsToastMessage = MutableLiveData<String>()
+    val settingsToastMessage : LiveData<String>
+        get() = _settingsToastMessage
 
     fun saveStringData(key: String, value: String) {
         sharedPreferences.saveStringData(key, value)
@@ -42,7 +50,6 @@ class SettingsViewModel (application: Application) : UserViewModel(application) 
         return sharedPreferences.getBooleanData(key,false)
     }
 
-
     fun getUserInfoFromDB() {
         launch {
             try {
@@ -53,12 +60,12 @@ class SettingsViewModel (application: Application) : UserViewModel(application) 
                 if (result.isSuccess) {
                     val user = result.getOrNull()
                     user?.let {
-                        userData.value = user!!
+                        _userData.value = user!!
                     }
                 }
             } catch (error: Exception) {
                 withContext(Dispatchers.Main) {
-                    settingsToastMessage.value = error.localizedMessage
+                    _settingsToastMessage.value = error.localizedMessage
                 }
             }
         }
@@ -71,10 +78,10 @@ class SettingsViewModel (application: Application) : UserViewModel(application) 
                 withContext(Dispatchers.IO) {
                     cloudService.backupAllNotesFromFirebase()
                 }
-                settingsSnackbarMessage.value = R.string.all_backup
+                _settingsSnackbarMessage.value = R.string.all_backup
             } catch (error: Exception) {
                 withContext(Dispatchers.Main) {
-                    settingsToastMessage.value = error.localizedMessage
+                    _settingsToastMessage.value = error.localizedMessage
                 }
             }
         }
@@ -86,11 +93,11 @@ class SettingsViewModel (application: Application) : UserViewModel(application) 
                 withContext(Dispatchers.IO){
                     cloudService.backloadAllDiariesFromFirebase()
                 }
-                settingsSnackbarMessage.value = R.string.all_backload
+                _settingsSnackbarMessage.value = R.string.all_backload
             }
             catch (error : Exception){
                 withContext(Dispatchers.Main){
-                    settingsToastMessage.value = error.localizedMessage
+                    _settingsToastMessage.value = error.localizedMessage
                 }
             }
         }
@@ -103,11 +110,11 @@ class SettingsViewModel (application: Application) : UserViewModel(application) 
                 withContext(Dispatchers.IO){
                     cloudService.deleteAllBackupDataFromFirebase()
                 }
-                settingsSnackbarMessage.value = R.string.all_cleared
+                _settingsSnackbarMessage.value = R.string.all_cleared
             }
             catch (error : Exception){
                 withContext(Dispatchers.Main){
-                    settingsToastMessage.value = error.localizedMessage
+                    _settingsToastMessage.value = error.localizedMessage
                 }
             }
         }
@@ -120,10 +127,10 @@ class SettingsViewModel (application: Application) : UserViewModel(application) 
                 withContext(Dispatchers.IO) {
                     deleteService.deleteAllNoteFromFirebase()
                 }
-                settingsSnackbarMessage.value = R.string.all_deleted
+                _settingsSnackbarMessage.value = R.string.all_deleted
             } catch (error: Exception) {
                 withContext(Dispatchers.Main) {
-                    settingsToastMessage.value = error.localizedMessage
+                    _settingsToastMessage.value = error.localizedMessage
                 }
             }
         }
@@ -138,7 +145,7 @@ class SettingsViewModel (application: Application) : UserViewModel(application) 
                 onSuccess()
             } catch (error: Exception) {
                 withContext(Dispatchers.Main) {
-                    settingsToastMessage.value = error.localizedMessage
+                    _settingsToastMessage.value = error.localizedMessage
                 }
             }
         }
@@ -150,11 +157,11 @@ class SettingsViewModel (application: Application) : UserViewModel(application) 
                 withContext(Dispatchers.IO) {
                     moveService.moveAllNoteToArchiveFirebase()
                 }
-                settingsSnackbarMessage.value = R.string.all_archived
+                _settingsSnackbarMessage.value = R.string.all_archived
 
             } catch (error: Exception) {
                 withContext(Dispatchers.Main) {
-                    settingsToastMessage.value = error.localizedMessage
+                    _settingsToastMessage.value = error.localizedMessage
                 }
             }
         }
@@ -166,10 +173,10 @@ class SettingsViewModel (application: Application) : UserViewModel(application) 
                 withContext(Dispatchers.IO) {
                     moveService.moveAllArchiveToNoteFirebase()
                 }
-                settingsSnackbarMessage.value = R.string.all_noted
+                _settingsSnackbarMessage.value = R.string.all_noted
             } catch (error: Exception) {
                 withContext(Dispatchers.Main) {
-                    settingsToastMessage.value = error.localizedMessage
+                    _settingsToastMessage.value = error.localizedMessage
                 }
             }
         }
@@ -184,7 +191,7 @@ class SettingsViewModel (application: Application) : UserViewModel(application) 
                 onSuccess()
             } catch (error: Exception) {
                 withContext(Dispatchers.Main) {
-                    settingsToastMessage.value = error.localizedMessage
+                    _settingsToastMessage.value = error.localizedMessage
                 }
             }
         }
@@ -212,7 +219,7 @@ class SettingsViewModel (application: Application) : UserViewModel(application) 
                 }
             } catch (error: Exception) {
                 withContext(Dispatchers.Main) {
-                    settingsToastMessage.value = error.localizedMessage
+                    _settingsToastMessage.value = error.localizedMessage
                 }
             }
         }
@@ -227,7 +234,7 @@ class SettingsViewModel (application: Application) : UserViewModel(application) 
                 onSuccess()
             } catch (error: Exception) {
                 withContext(Dispatchers.Main) {
-                    settingsToastMessage.value = error.localizedMessage
+                    _settingsToastMessage.value = error.localizedMessage
                 }
             }
         }

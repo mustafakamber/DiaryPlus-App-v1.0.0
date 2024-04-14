@@ -1,6 +1,7 @@
 package com.example.diarybook.viewmodel
 
 import android.app.Application
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.diarybook.R
 import com.example.diarybook.model.Diary
@@ -14,30 +15,52 @@ import kotlinx.coroutines.withContext
 
 class ArchiveViewModel (application: Application) : CoroutineViewModel(application) {
 
-    val archiveDiaryView = MutableLiveData<List<Diary>?>()
-    val archiveNotesErrorMessage = MutableLiveData<Boolean>()
-    val archiveNoteNullMessage = MutableLiveData<Boolean>()
-    val archiveSearchView = MutableLiveData<Boolean>()
-    val archiveToastMessage = MutableLiveData<String?>()
-    val archiveSnackbarMessage = MutableLiveData<Int>()
+    private val _archiveDiaryView = MutableLiveData<List<Diary>?>()
+    val archiveDiaryView : LiveData<List<Diary>?>
+        get() = _archiveDiaryView
+
+    private val _archiveErrorMessage = MutableLiveData<Boolean>()
+    val archiveErrorMessage : LiveData<Boolean>
+        get() = _archiveErrorMessage
+
+    private val _archiveNullMessage = MutableLiveData<Boolean>()
+    val archiveNullMessage : LiveData<Boolean>
+        get() = _archiveNullMessage
+
+    private val _archiveSearchView = MutableLiveData<Boolean>()
+    val archiveSearchView : LiveData<Boolean>
+        get() = _archiveSearchView
+
+    private val _archiveToastMessage = MutableLiveData<String?>()
+    val archiveToastMessage : LiveData<String?>
+        get() = _archiveToastMessage
+
+    private val _archiveSnackbarMessage = MutableLiveData<Int>()
+    val archiveSnackbarMessage : LiveData<Int>
+        get() = _archiveSnackbarMessage
 
     private val getService = GetService()
     private val moveService = MoveService()
     private val deleteService = DeleteService()
-
     private val sharedPreferences = SharedPreferences(getApplication())
+    private var isSearchViewVisible: Boolean = false
 
+
+    fun updateSearchViewVisibilityState(){
+        _archiveSearchView.value = !isSearchViewVisible
+        isSearchViewVisible = !isSearchViewVisible
+    }
 
     fun saveBooleanData(key: String, value: Boolean) {
         sharedPreferences.saveBooleanData(key, value)
     }
 
     fun refreshArchive(){
-        archiveDiaryView.value = null
-        archiveNoteNullMessage.value = false
-        archiveNotesErrorMessage.value = false
-        archiveSearchView.value = false
-        archiveToastMessage.value = null
+        _archiveDiaryView.value = null
+        _archiveNullMessage.value = false
+        _archiveErrorMessage.value = false
+        _archiveSearchView.value = false
+        _archiveToastMessage.value = null
         getDiariesInTheArchive()
     }
 
@@ -51,19 +74,18 @@ class ArchiveViewModel (application: Application) : CoroutineViewModel(applicati
                 if (result.isSuccess) {
                     val archiveNotes = result.getOrNull()
                     if (archiveNotes.isNullOrEmpty()) {
-                        archiveNoteNullMessage.value = true
+                        _archiveNullMessage.value = true
                     } else {
-                        archiveDiaryView.value = archiveNotes
+                        _archiveDiaryView.value = archiveNotes
                     }
                 }
             } catch (error: Exception) {
-                archiveNotesErrorMessage.value = true
+                _archiveErrorMessage.value = true
                 withContext(Dispatchers.Main) {
-                    archiveToastMessage.value = error.localizedMessage
+                    _archiveToastMessage.value = error.localizedMessage
                 }
             }
         }
-
     }
 
     fun deleteArchive(noteId: String) {
@@ -72,11 +94,11 @@ class ArchiveViewModel (application: Application) : CoroutineViewModel(applicati
                 withContext(Dispatchers.IO) {
                     deleteService.deleteSingleArchiveFromFirebase(noteId)
                 }
-                archiveSnackbarMessage.value = R.string.deleted
+                _archiveSnackbarMessage.value = R.string.deleted
                 getDiariesInTheArchive()
             } catch (error: Exception) {
                 withContext(Dispatchers.Main) {
-                    archiveToastMessage.value = error.localizedMessage
+                    _archiveToastMessage.value = error.localizedMessage
                 }
             }
         }
@@ -88,14 +110,13 @@ class ArchiveViewModel (application: Application) : CoroutineViewModel(applicati
                 withContext(Dispatchers.IO) {
                     moveService.moveSingleArchiveToNoteFirebase(noteId)
                 }
-                archiveSnackbarMessage.value = R.string.unarchived
+                _archiveSnackbarMessage.value = R.string.unarchived
                 getDiariesInTheArchive()
             } catch (error: Exception) {
                 withContext(Dispatchers.Main) {
-                    archiveToastMessage.value = error.localizedMessage
+                    _archiveToastMessage.value = error.localizedMessage
                 }
             }
         }
     }
-
 }

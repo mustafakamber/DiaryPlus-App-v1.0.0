@@ -30,6 +30,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/noteSaveButton"
+            android:visibility="gone"
             android:layout_width="@dimen/normal_button_size"
             android:layout_height="@dimen/small_button_size"
             android:layout_marginEnd="@dimen/large_horizontal_spacing"
@@ -45,6 +46,7 @@
 
         <ImageView
             android:id="@+id/noteMenuButton"
+            android:visibility="gone"
             android:layout_width="@dimen/normal_button_size"
             android:layout_height="@dimen/small_button_size"
             android:layout_marginEnd="@dimen/large_horizontal_spacing"
@@ -177,6 +179,10 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/noteRecyclerView"
+            android:visibility="gone"
+            android:orientation="horizontal"
+            app:reverseLayout="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_width="match_parent"
             android:layout_height="@dimen/diary_recycler_layout_size"
             android:layout_marginStart="@dimen/large_horizontal_spacing"

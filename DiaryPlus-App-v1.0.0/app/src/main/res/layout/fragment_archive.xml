@@ -138,6 +138,7 @@
 
                <androidx.recyclerview.widget.RecyclerView
                    android:id="@+id/archiveRecyclerView"
+                   app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                    style="@style/NoteRecyclerViewStyle"
                    android:layout_marginTop="@dimen/tiny_vertical_spacing"
                    app:layout_constraintBottom_toBottomOf="parent"
